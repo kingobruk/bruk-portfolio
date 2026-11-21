@@ -122,7 +122,6 @@
       border-color: var(--border-strong);
     }
 
-    /* CONTACT AS PRIMARY CTA */
     .nav-cta {
       background: var(--accent);
       color: #ffffff;
@@ -363,7 +362,6 @@
       text-wrap: balance;
     }
 
-    /* BALANCED 3-ITEM POSITIONING BAR (NO 3+1 ORPHAN) */
     .stats-bar {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -449,7 +447,7 @@
       display: none !important;
     }
 
-    /* CATEGORY FILTER BAR (DIRECT ROUTE LINKS) */
+    /* CATEGORY FILTER BAR */
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
@@ -575,7 +573,6 @@
       height: calc(100% + 148px);
     }
 
-    /* UNIFORM DARK-MODE INSTAGRAM COVER (NO JARRING WHITE IFRAME ON LOAD) */
     .ig-dark-cover {
       position: absolute;
       inset: 0;
@@ -614,7 +611,6 @@
       color: var(--muted);
     }
 
-    /* SUBTLE BOTTOM-RIGHT PLAY BADGE (DOES NOT OBSCURE THUMBNAIL TEXT) */
     .play-badge {
       position: absolute;
       right: 12px;
@@ -684,7 +680,7 @@
       line-height: 1.45;
     }
 
-    /* ================= ABOUT ME PAGE (STREAMLINED, NO BLOAT, BALANCED GRIDS) ================= */
+    /* ================= ABOUT ME PAGE ================= */
     .about-section {
       margin-top: 40px;
     }
@@ -730,7 +726,6 @@
       max-width: 720px;
     }
 
-    /* STRICT 4x1 ON DESKTOP, 2x2 ON TABLET/MOBILE (NEVER 3+1) */
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -780,7 +775,6 @@
       letter-spacing: -0.01em;
     }
 
-    /* STRICT 2x2 GRID FOR 4 NAMED CLIENTS (FIXED HEADER WRAPPING + CLICKABLE VIDEO LINKS) */
     .clients-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -872,7 +866,6 @@
       background: rgba(59, 130, 246, 0.15);
     }
 
-    /* COMPACT 1-LINE CORE STACK STRIP (REPLACES REPETITIVE 4-CARD SECTION) */
     .stack-strip {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -1038,7 +1031,7 @@
 </head>
 <body>
 
-  <!-- NAVBAR: WORK | ABOUT ME | CONTACT (PRIMARY CTA) -->
+  <!-- NAVBAR -->
   <header class="navbar">
     <div class="nav-container">
       <a href="#featured" class="brand">
@@ -1101,7 +1094,7 @@
     </div>
   </section>
 
-  <!-- ================= MAIN HERO (SHOWN ON FEATURED VIEW) ================= -->
+  <!-- ================= MAIN HERO ================= -->
   <section id="hero-banner" class="hero">
     <div class="hero-profile">
       <img
@@ -1127,7 +1120,7 @@
     </div>
   </section>
 
-  <!-- ================= DEDICATED CATEGORY PAGE HEADER (SHOWN ON #vlogs, #shorts, #ugc, #ai) ================= -->
+  <!-- ================= DEDICATED CATEGORY PAGE HEADER ================= -->
   <section id="category-banner" class="category-banner hidden-page">
     <div class="category-banner-text">
       <h1 id="category-heading">Vlogs & Podcasts</h1>
@@ -1169,7 +1162,6 @@
       </div>
     </div>
 
-    <!-- STRICT 4x1 METRICS GRID -->
     <div class="metrics-grid">
       <div class="metric-card">
         <div class="metric-number">6.2M+</div>
@@ -1193,7 +1185,6 @@
       </div>
     </div>
 
-    <!-- STRICT 2x2 NAMED CLIENTS GRID WITH DIRECT VIDEO LINKS -->
     <h3 class="about-subheading">Selected Client Credits</h3>
     <div class="clients-grid">
       <div class="client-card">
@@ -1266,7 +1257,6 @@
       </div>
     </div>
 
-    <!-- SINGLE CORE STACK STRIP -->
     <div class="stack-strip">
       <span class="stack-label">Core Stack</span>
       <div class="stack-items">
@@ -1351,7 +1341,7 @@
       { id: 'Edr2LTIaNFQ', platform: 'yt', cat: 'vlogs', featured: true, metric: '1.1M+ Views', title: 'Can I Save This Failing Donut Shop?', desc: 'Davie Fogarty · Lead Editor: Documentary turnaround cut and color grade.' },
       { id: 'O0iTti8z1C4', platform: 'yt', cat: 'vlogs', featured: true, metric: '818K+ Views', title: 'The 10 Most Hated Home Trends', desc: 'Builder Brigade · Lead Editor: Educational listicle pacing and visual overlays.' },
       { id: 'SVkNsw8FR8g', platform: 'yt', cat: 'vlogs', featured: true, metric: '309K+ Views', title: 'She Made $10M in 48 Hours and Walked Away', desc: 'Kanessa Muluneh · Full 68-min multi-cam podcast cut, trailer hook, and audio mix.' },
-      { id: 'IRYfA1WjY0k', platform: 'yt', cat: 'vlogs', featured: false, metric: '202K+ Views', title: 'How Comfrt Made $500M in 3 Years', desc: 'Davie Fogarty · 45-min founder interview, multi-angle sync, and retention cold open.' },
+      { id: 'IRYfA1WjY0k', platform: 'yt', cat: 'vlogs', featured: true, metric: '202K+ Views', title: 'How Comfrt Made $500M in 3 Years', desc: 'Davie Fogarty · 45-min founder interview, multi-angle sync, and retention cold open.' },
       { id: 'Tft587jhybg', platform: 'yt', cat: 'vlogs', featured: false, metric: '141K+ Views', title: 'How I Make $100M a Year (After 12 Failed Businesses)', desc: 'Davie Fogarty · Documentary breakdown with custom charts, B-roll, and sound design.' },
       { id: 'b82ibVe1rDA', platform: 'yt', cat: 'vlogs', featured: false, metric: '122K+ Views', title: 'This 32-Year-Old Makes $10M Selling Villas in Bali', desc: 'Davie Fogarty · On-location tour vlog with S-Log3 / D-Log M color grading.' },
       { id: 'zHxjbNV8gDU', platform: 'yt', cat: 'vlogs', featured: false, metric: '73-Min Podcast', title: 'Business Acquisition Expert: Buy in 90 Days', desc: 'Gulf Standard Time · Multi-cam studio edit, trailer intro, and broadcast audio mix.' },
@@ -1385,7 +1375,7 @@
 
     var videos = [];
     try {
-      var saved = localStorage.getItem('bruk_portfolio_videos_v2');
+      var saved = localStorage.getItem('bruk_portfolio_videos_v3');
       videos = saved ? JSON.parse(saved) : defaultVideos.slice();
     } catch (e) {
       videos = defaultVideos.slice();
@@ -1400,11 +1390,10 @@
 
     function saveVideosState() {
       try {
-        localStorage.setItem('bruk_portfolio_videos_v2', JSON.stringify(videos));
+        localStorage.setItem('bruk_portfolio_videos_v3', JSON.stringify(videos));
       } catch (e) {}
     }
 
-    // HASH ROUTER FOR DEDICATED PAGES (#featured, #vlogs, #shorts, #ugc, #ai, #about, #contact)
     function handleRoute() {
       stopAllActivePlayers();
       var rawHash = (window.location.hash || '#featured').replace('#', '').toLowerCase();
@@ -1454,7 +1443,6 @@
           document.title = meta.title + ' | Bruk Nega';
         }
 
-        // Update filter bar active state
         var filterBtns = document.querySelectorAll('.filter-btn');
         for (var i = 0; i < filterBtns.length; i++) {
           var r = filterBtns[i].getAttribute('data-route');
@@ -1469,7 +1457,6 @@
 
     window.addEventListener('hashchange', handleRoute);
 
-    // JUMP FROM ABOUT ME CLIENT CREDIT DIRECTLY TO THE SPECIFIC VIDEO
     function jumpToVideo(videoId, category) {
       window.location.hash = '#' + category;
       setTimeout(function() {
@@ -1501,6 +1488,7 @@
 
         var adminBtns =
           '<div class="card-admin-controls">' +
+            '<button class="card-ctrl-btn" title="Edit Exact Title" onclick="editVideoTitle(' + index + ')">✎</button>' +
             '<button class="card-ctrl-btn' + (item.featured ? ' featured-on' : '') + '" title="Toggle Featured" onclick="toggleFeatured(' + index + ')">★</button>' +
             '<button class="card-ctrl-btn" title="Move Left" onclick="moveVideo(' + index + ', -1)">←</button>' +
             '<button class="card-ctrl-btn" title="Move Right" onclick="moveVideo(' + index + ', 1)">→</button>' +
@@ -1511,7 +1499,9 @@
         if (item.platform === 'ig') {
           thumbHTML =
             '<div class="thumb-box vertical" onclick="playInstagramInline(this, \'' + item.id + '\')">' +
-              '<div class="ig-dark-cover">' +
+              '<img src="ig-' + item.id + '.jpg" loading="lazy" alt="' + item.title.replace(/"/g, '&quot;') + '" ' +
+              'onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';" />' +
+              '<div class="ig-dark-cover" style="display:none;">' +
                 '<span class="ig-badge-icon">Instagram Reel</span>' +
                 '<div class="ig-cover-title">' + item.title + '</div>' +
                 '<span class="ig-cover-hint">Click to play inline</span>' +
@@ -1539,7 +1529,24 @@
           '</div>';
 
         grid.appendChild(card);
+
+        if (item.platform === 'yt') {
+          syncYouTubeTitle(item, index);
+        }
       });
+    }
+
+    function syncYouTubeTitle(item, idx) {
+      fetch('https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' + item.id + '&format=json')
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          if (d && d.title) {
+            videos[idx].title = d.title;
+            var el = document.getElementById('title-' + item.id);
+            if (el) el.textContent = d.title;
+          }
+        })
+        .catch(function() {});
     }
 
     function checkThumb(img, id) {
@@ -1621,7 +1628,7 @@
         cat: catInput.value,
         featured: currentRoute === 'featured',
         metric: metricInput.value.trim() || (parsed.platform === 'ig' ? 'Instagram Reel' : 'Featured Cut'),
-        title: parsed.platform === 'ig' ? 'New Instagram Reel' : 'Loading title...',
+        title: parsed.platform === 'ig' ? 'New Instagram Reel (Click ✎ to set exact title)' : 'Loading exact YouTube title...',
         desc: descInput.value.trim() || 'Lead Editor: Pacing, motion graphics, and audio mix.'
       };
 
@@ -1629,22 +1636,18 @@
       saveVideosState();
       renderPortfolio();
 
-      if (parsed.platform === 'yt') {
-        fetch('https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' + parsed.id + '&format=json')
-          .then(function(r) { return r.json(); })
-          .then(function(d) {
-            if (d && d.title) {
-              newEntry.title = d.title.replace(/—/g, '-');
-              saveVideosState();
-              renderPortfolio();
-            }
-          })
-          .catch(function() {});
-      }
-
       urlInput.value = '';
       metricInput.value = '';
       descInput.value = '';
+    }
+
+    function editVideoTitle(index) {
+      var newTitle = prompt('Enter exact posted title for this video:', videos[index].title);
+      if (newTitle !== null && newTitle.trim() !== '') {
+        videos[index].title = newTitle.trim();
+        saveVideosState();
+        renderPortfolio();
+      }
     }
 
     function toggleFeatured(index) {
