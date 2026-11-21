@@ -3,9 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Bruk Nega | Senior Video Editor & AI Video Specialist</title>
   <style>
+    :root {
+      --bg: #09090b;
+      --surface: #111114;
+      --surface-hover: #18181c;
+      --border: #232329;
+      --border-strong: #32323c;
+      --text: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --accent: #e4e4e7;
+      --brand-blue: #3b82f6;
+      --green: #22c55e;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -17,57 +29,58 @@
     }
 
     body {
-      background-color: #0b0b0e;
-      color: #f3f4f6;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
       line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* TOP NAVBAR */
+    /* NAVBAR */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(11, 11, 14, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid #22222a;
+      background: rgba(9, 9, 11, 0.92);
+      border-bottom: 1px solid var(--border);
       padding: 14px 24px;
     }
 
     .nav-container {
-      max-width: 1240px;
+      max-width: 1160px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
+      gap: 16px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 10px;
-      cursor: pointer;
+      text-decoration: none;
+      color: var(--text);
     }
 
     .status-dot {
-      width: 9px;
-      height: 9px;
-      background: #22c55e;
+      width: 8px;
+      height: 8px;
+      background: var(--green);
       border-radius: 50%;
-      box-shadow: 0 0 8px #22c55e;
     }
 
     .brand-name {
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
     }
 
     .availability {
-      font-size: 0.78rem;
-      color: #9ca3af;
-      background: #181820;
+      font-size: 0.76rem;
+      color: #d4d4d8;
+      background: #18181c;
+      border: 1px solid var(--border);
       padding: 3px 10px;
       border-radius: 999px;
     }
@@ -75,53 +88,68 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    /* NAV PILL HOVER & ACTIVE HIGHLIGHT */
-    .nav-item {
+    .nav-tab {
       background: transparent;
-      color: #d1d5db;
-      text-decoration: none;
+      border: none;
+      color: var(--text-muted);
       font-size: 0.9rem;
-      font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 1px solid transparent;
+      font-weight: 500;
+      padding: 7px 14px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.2s ease;
-      font-family: inherit;
+      text-decoration: none;
+      transition: color 0.15s ease, background 0.15s ease;
     }
 
-    .nav-item:hover,
-    .nav-item.active-nav {
-      color: #ffffff;
-      background: #3b82f6;
-      border-color: #3b82f6;
-      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+    .nav-tab:hover {
+      color: var(--text);
+      background: var(--surface-hover);
     }
 
-    .drive-btn {
-      background: #ffffff;
-      color: #0b0b0e !important;
+    .nav-tab.active {
+      color: var(--text);
+      background: #1f1f26;
       font-weight: 600;
+    }
+
+    .nav-cta {
+      background: #ffffff;
+      color: #09090b;
+      font-weight: 600;
+      font-size: 0.88rem;
       padding: 8px 16px;
       border-radius: 8px;
       text-decoration: none;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
+      margin-left: 6px;
+      transition: opacity 0.15s ease;
     }
 
-    .drive-btn:hover {
-      background: #3b82f6 !important;
-      color: #ffffff !important;
+    .nav-cta:hover {
+      opacity: 0.88;
     }
 
-    /* HERO SECTION WITH LARGER 116PX HEADSHOT */
+    /* VIEWS */
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active-view {
+      display: block;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* WORK HERO */
     .hero {
-      max-width: 920px;
-      margin: 48px auto 34px;
+      max-width: 780px;
+      margin: 56px auto 40px;
       padding: 0 24px;
       text-align: center;
     }
@@ -129,127 +157,128 @@
     .hero-profile {
       display: inline-flex;
       align-items: center;
-      gap: 24px;
-      margin-bottom: 22px;
+      gap: 16px;
+      margin-bottom: 18px;
       text-align: left;
-      flex-wrap: wrap;
-      justify-content: center;
     }
 
     .profile-avatar {
-      width: 116px;
-      height: 116px;
-      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
       object-fit: cover;
-      border: 3px solid #3b82f6;
-      box-shadow: 0 8px 28px rgba(59, 130, 246, 0.28);
-      background: #1e1e26;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
       flex-shrink: 0;
     }
 
     .hero-identity h1 {
-      font-size: 2.4rem;
+      font-size: 2rem;
       font-weight: 800;
-      line-height: 1.12;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
     }
 
     .hero-subtitle {
-      color: #60a5fa;
-      font-weight: 600;
-      font-size: 1.05rem;
-      margin-top: 4px;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.98rem;
     }
 
     .hero-bio {
-      color: #9ca3af;
-      max-width: 680px;
-      margin: 0 auto 24px;
-      font-size: 1.02rem;
+      color: #d4d4d8;
+      max-width: 650px;
+      margin: 0 auto 28px;
+      font-size: 1rem;
+      text-wrap: balance;
     }
 
-    .stats-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
+    /* STRICT 4-COLUMN STAT GRID (NEVER 3+1) */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 820px;
+      margin: 0 auto;
     }
 
-    .stat-pill {
-      background: #15151d;
-      border: 1px solid #262632;
-      padding: 7px 15px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      color: #e5e7eb;
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 12px;
+      text-align: center;
     }
 
-    /* PAGE SECTIONS */
-    .portfolio-section,
-    .about-section {
-      max-width: 1240px;
-      margin: 0 auto 80px;
+    .stat-value {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* FILTER BAR */
+    .portfolio-section {
+      max-width: 1160px;
+      margin: 0 auto 84px;
       padding: 0 24px;
     }
 
-    .hidden-page {
-      display: none !important;
-    }
-
-    /* CATEGORY FILTER BAR (TITLES ONLY) */
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       margin-bottom: 32px;
-      padding: 12px;
-      background: #121218;
+      padding: 10px;
+      background: var(--surface);
       border-radius: 12px;
-      border: 1px solid #22222c;
-      position: sticky;
-      top: 62px;
-      z-index: 90;
+      border: 1px solid var(--border);
     }
 
     .filter-btn {
-      background: #1a1a24;
-      color: #9ca3af;
-      border: 1px solid #2a2a38;
-      padding: 9px 18px;
-      border-radius: 999px;
-      font-size: 0.9rem;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
     }
 
     .filter-btn:hover {
-      color: #ffffff;
-      border-color: #3b82f6;
-      background: rgba(59, 130, 246, 0.16);
+      color: var(--text);
+      background: var(--surface-hover);
     }
 
     .filter-btn.active {
-      background: #3b82f6;
-      color: #ffffff;
-      border-color: #3b82f6;
-      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+      background: #ffffff;
+      color: #09090b;
     }
 
-    /* GRID & INLINE VIDEO CARDS */
+    /* VIDEO GRID */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 22px;
-      align-items: start;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 20px;
     }
 
     .video-card {
-      background: #13131a;
-      border: 1px solid #242432;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
       overflow: hidden;
+      text-decoration: none;
       color: inherit;
       display: flex;
       flex-direction: column;
@@ -257,322 +286,303 @@
     }
 
     .video-card:hover {
-      transform: translateY(-4px);
-      border-color: #3b82f6;
+      transform: translateY(-3px);
+      border-color: var(--border-strong);
     }
 
     .thumb-box {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: linear-gradient(135deg, #181824 0%, #0f172a 100%);
+      background: #16161b;
+      overflow: hidden;
+    }
+
+    .thumb-box.ig-thumb {
+      background: linear-gradient(135deg, #16161d 0%, #1f1f2b 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      cursor: pointer;
     }
 
-    .thumb-box.vertical {
-      aspect-ratio: 9 / 15;
+    .ig-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #d4d4d8;
+      border: 1px solid var(--border-strong);
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(9, 9, 11, 0.65);
     }
 
     .thumb-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      position: absolute;
-      inset: 0;
-      image-rendering: -webkit-optimize-contrast;
+      display: block;
     }
 
-    .thumb-box.vertical img.hq-fallback {
-      transform: scale(1.35);
-    }
-
-    .thumb-box iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      position: absolute;
-      inset: 0;
-      z-index: 5;
-      background: #000;
-    }
-
-    /* Crops out the white Instagram header/footer bar so only the vertical Reel video thumbnail shows cleanly */
-    .thumb-box.insta-embed-box iframe {
-      top: -54px;
-      height: calc(100% + 148px);
-    }
-
+    /* BOTTOM-RIGHT PLAY BADGE (NEVER COVERS THUMBNAIL TEXT) */
     .play-badge {
-      position: relative;
-      z-index: 2;
-      width: 54px;
-      height: 54px;
-      background: rgba(59, 130, 246, 0.95);
-      color: #fff;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 38px;
+      height: 38px;
+      background: rgba(9, 9, 11, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #ffffff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.65);
-      transition: transform 0.15s ease;
+      font-size: 0.85rem;
+      transition: background 0.15s ease, transform 0.15s ease;
     }
 
-    .thumb-box:hover .play-badge {
-      transform: scale(1.1);
+    .video-card:hover .play-badge {
+      background: #ffffff;
+      color: #09090b;
+      transform: scale(1.06);
     }
 
     .card-body {
       padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
     }
 
     .card-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
       margin-bottom: 8px;
     }
 
     .card-badge {
-      font-size: 0.72rem;
+      font-size: 0.73rem;
       font-weight: 600;
-      color: #60a5fa;
-      background: rgba(59, 130, 246, 0.14);
+      color: #d4d4d8;
+      background: #1c1c22;
+      border: 1px solid var(--border);
       padding: 3px 9px;
       border-radius: 6px;
+      white-space: nowrap;
     }
 
     .card-metric {
-      font-size: 0.74rem;
-      color: #22c55e;
+      font-size: 0.76rem;
+      color: var(--green);
       font-weight: 600;
+      white-space: nowrap;
     }
 
     .card-title {
       font-size: 0.98rem;
       font-weight: 700;
       margin-bottom: 6px;
-      color: #fff;
+      color: var(--text);
+      line-height: 1.35;
     }
 
     .card-desc {
-      font-size: 0.82rem;
-      color: #9ca3af;
+      font-size: 0.84rem;
+      color: var(--text-muted);
     }
 
-    /* ================= ABOUT ME PAGE STYLING ================= */
-    .about-hero-card {
-      background: linear-gradient(145deg, #14141d 0%, #101524 100%);
-      border: 1px solid #26293a;
-      border-radius: 18px;
-      padding: 36px;
+    /* ABOUT ME VIEW */
+    .about-wrapper {
+      max-width: 920px;
+      margin: 56px auto 84px;
+      padding: 0 24px;
+    }
+
+    .about-hero {
       display: flex;
-      align-items: center;
-      gap: 32px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 24px;
     }
 
     .about-avatar {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
+      width: 84px;
+      height: 84px;
+      border-radius: 16px;
       object-fit: cover;
-      border: 3px solid #3b82f6;
-      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.32);
+      border: 1px solid var(--border-strong);
       flex-shrink: 0;
     }
 
-    .about-intro {
-      flex: 1;
-      min-width: 260px;
-    }
-
-    .about-tag {
-      display: inline-block;
-      font-size: 0.76rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #60a5fa;
-      background: rgba(59, 130, 246, 0.14);
-      padding: 4px 12px;
-      border-radius: 999px;
+    .about-hero h2 {
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
       margin-bottom: 10px;
     }
 
-    .about-intro h2 {
-      font-size: 1.9rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: #ffffff;
+    .about-hero p {
+      color: #d4d4d8;
+      font-size: 0.96rem;
     }
 
-    .about-intro p {
-      color: #cbd5e1;
-      font-size: 0.98rem;
-      margin-bottom: 12px;
-    }
-
-    /* VIEWS & IMPACT METRICS GRID */
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
+    .about-stats {
       margin-bottom: 36px;
+      max-width: 100%;
     }
 
-    .metric-card {
-      background: #13131a;
-      border: 1px solid #242432;
-      border-radius: 14px;
-      padding: 22px;
-      text-align: center;
-    }
-
-    .metric-number {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #3b82f6;
-      line-height: 1.1;
-      margin-bottom: 6px;
-    }
-
-    .metric-label {
-      font-size: 0.9rem;
+    .section-heading {
+      font-size: 1.15rem;
       font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 4px;
+      margin-bottom: 16px;
+      color: var(--text);
     }
 
-    .metric-sub {
-      font-size: 0.78rem;
-      color: #9ca3af;
-    }
-
-    /* SECTION HEADINGS IN ABOUT */
-    .about-subheading {
-      font-size: 1.35rem;
-      font-weight: 800;
-      margin-bottom: 18px;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    /* CLIENTS & CREATORS ROSTER */
+    /* STRICT 2x2 NOTABLE CLIENTS GRID */
     .clients-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-      margin-bottom: 40px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
     }
 
     .client-card {
-      background: #13131a;
-      border: 1px solid #242432;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 20px;
-      transition: border-color 0.2s ease;
-    }
-
-    .client-card:hover {
-      border-color: #3b82f6;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
     }
 
     .client-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      gap: 12px;
     }
 
     .client-name {
       font-size: 1.05rem;
       font-weight: 700;
-      color: #ffffff;
-    }
-
-    .client-views {
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: #22c55e;
-      background: rgba(34, 197, 94, 0.12);
-      padding: 3px 9px;
-      border-radius: 999px;
+      color: var(--text);
+      white-space: nowrap;
     }
 
     .client-role {
-      font-size: 0.82rem;
-      color: #60a5fa;
-      font-weight: 600;
-      margin-bottom: 6px;
+      font-size: 0.74rem;
+      color: #d4d4d8;
+      background: #1c1c22;
+      border: 1px solid var(--border);
+      padding: 3px 9px;
+      border-radius: 6px;
+      white-space: nowrap;
     }
 
     .client-desc {
-      font-size: 0.84rem;
-      color: #9ca3af;
+      font-size: 0.87rem;
+      color: var(--text-muted);
     }
 
-    /* STYLES MASTERED GRID */
-    .styles-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
-      gap: 18px;
-      margin-bottom: 40px;
-    }
-
-    .style-card {
-      background: #13131a;
-      border: 1px solid #242432;
-      border-radius: 14px;
-      padding: 22px;
-    }
-
-    .style-card h4 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 8px;
-    }
-
-    .style-card p {
-      font-size: 0.85rem;
-      color: #9ca3af;
-      margin-bottom: 12px;
-    }
-
-    .tag-row {
+    .client-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 8px;
+      margin-top: 4px;
     }
 
-    .tech-tag {
-      font-size: 0.72rem;
+    .credit-link {
+      font-size: 0.8rem;
       font-weight: 600;
-      color: #d1d5db;
-      background: #1d1d28;
-      border: 1px solid #2e2e3e;
-      padding: 3px 9px;
+      color: #60a5fa;
+      text-decoration: none;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      padding: 4px 10px;
       border-radius: 6px;
+      transition: background 0.15s ease;
+    }
+
+    .credit-link:hover {
+      background: rgba(59, 130, 246, 0.2);
+    }
+
+    /* COMPACT CORE STACK STRIP */
+    .stack-strip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .stack-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 6px;
+    }
+
+    .stack-item {
+      font-size: 0.84rem;
+      color: #d4d4d8;
+      background: #1a1a20;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background: var(--surface-hover);
     }
 
     /* FOOTER */
     .footer {
       text-align: center;
-      padding: 56px 24px;
-      border-top: 1px solid #22222a;
+      padding: 64px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
     }
 
     .footer p {
-      color: #9ca3af;
-      margin: 8px 0 22px;
+      color: var(--text-muted);
+      margin: 8px 0 24px;
+      font-size: 0.95rem;
     }
 
     .footer-actions {
@@ -583,772 +593,692 @@
     }
 
     .action-btn {
-      background: #181822;
-      color: #fff;
-      border: 1px solid #2e2e3e;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border-strong);
       padding: 11px 20px;
       border-radius: 10px;
       text-decoration: none;
       font-weight: 600;
       cursor: pointer;
       font-size: 0.9rem;
-      transition: all 0.2s ease;
+      transition: background 0.15s ease;
     }
 
     .action-btn:hover {
-      border-color: #3b82f6;
-      background: rgba(59, 130, 246, 0.16);
+      background: var(--surface-hover);
     }
 
     .action-btn.primary {
-      background: #3b82f6;
-      border-color: #3b82f6;
+      background: #ffffff;
+      color: #09090b;
+      border-color: #ffffff;
     }
 
     .action-btn.primary:hover {
-      background: #2563eb;
+      opacity: 0.9;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .availability {
+        display: none;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .clients-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-hero {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- NAVBAR WITH WORK | ABOUT ME | CONTACT -->
+  <!-- TOP NAVBAR -->
   <header class="navbar">
     <div class="nav-container">
-      <div class="brand" onclick="switchPage('work')">
+      <a href="#work" class="brand" onclick="switchView('work')">
         <span class="status-dot"></span>
         <span class="brand-name">Bruk Nega</span>
         <span class="availability">Available for Projects</span>
-      </div>
+      </a>
       <nav class="nav-links">
-        <button id="nav-work" class="nav-item active-nav" onclick="switchPage('work')">Work</button>
-        <button id="nav-about" class="nav-item" onclick="switchPage('about')">About Me</button>
-        <a href="#contact" class="nav-item">Contact</a>
-        <a href="https://drive.google.com/drive/folders/1RI4Izp_UzoerlZsl5EQ5eSeHfxTk-Kst" target="_blank" class="drive-btn">Google Drive Archive ↗</a>
+        <a href="#work" id="nav-work" class="nav-tab active" onclick="switchView('work')">Work</a>
+        <a href="#about" id="nav-about" class="nav-tab" onclick="switchView('about')">About Me</a>
+        <a href="#contact" id="nav-contact" class="nav-cta">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO WITH LARGER 116PX PROFILE PHOTO -->
-  <section id="hero-banner" class="hero">
-    <div class="hero-profile">
-      <img
-        src="profile.jpg"
-        alt="Bruk Nega"
-        class="profile-avatar"
-        onerror="if(!this.dataset.t){this.dataset.t=1;this.src='profile.png';}else if(this.dataset.t==1){this.dataset.t=2;this.src='profile.jpeg';}else if(this.dataset.t==2){this.dataset.t=3;this.src='profile.jpg.jpg';}else if(this.dataset.t==3){this.dataset.t=4;this.src='profile.jpg.png';}else{this.src='https://ui-avatars.com/api/?name=Bruk+Nega&background=1e1e26&color=fff&size=200';}"
-      />
-      <div class="hero-identity">
-        <h1>Bruk Nega</h1>
-        <p class="hero-subtitle">Senior Video Editor & AI Video Specialist</p>
+  <!-- ================= WORK VIEW ================= -->
+  <main id="view-work" class="view-section active-view">
+    <section class="hero">
+      <div class="hero-profile">
+        <img src="profile.jpg" alt="Bruk Nega" class="profile-avatar" onerror="this.style.display='none'" />
+        <div class="hero-identity">
+          <h1>Bruk Nega</h1>
+          <p class="hero-subtitle">Senior Video Editor &amp; AI Video Specialist</p>
+        </div>
       </div>
-    </div>
+      <p class="hero-bio">
+        High-retention short-form reels, DTC UGC ads, multi-cam podcasts, and audio-first AI commercials crafted in Premiere Pro, DaVinci Resolve, ElevenLabs, and Google Flow.
+      </p>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value">6.2M+</span>
+          <span class="stat-label">Verified Views</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">Team of 5</span>
+          <span class="stat-label">Editors Led</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">15+ / Wk</span>
+          <span class="stat-label">Short-Form Output</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">4+ / Wk</span>
+          <span class="stat-label">Long-Form Output</span>
+        </div>
+      </div>
+    </section>
 
-    <p class="hero-bio">
-      Crafting high-converting short-form reels, DTC UGC creatives, multi-cam podcasts, and audio-first AI commercials using <strong>Premiere Pro</strong>, <strong>DaVinci Resolve</strong>, <strong>ElevenLabs</strong>, and <strong>Google Flow</strong>.
-    </p>
+    <section class="portfolio-section">
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterVideos('featured', this)">Featured</button>
+        <button class="filter-btn" onclick="filterVideos('vlogs', this)">Vlogs / Podcasts</button>
+        <button class="filter-btn" onclick="filterVideos('shorts', this)">Shorts / Reels</button>
+        <button class="filter-btn" onclick="filterVideos('ugc', this)">DTC UGC Videos</button>
+        <button class="filter-btn" onclick="filterVideos('ai', this)">AI Ads &amp; AI Series</button>
+        <button class="filter-btn" onclick="filterVideos('all', this)">All Works</button>
+      </div>
 
-    <div class="stats-bar">
-      <div class="stat-pill"><strong>6.2M+</strong> Portfolio Views Generated</div>
-      <div class="stat-pill"><strong>Senior Lead</strong> (Team of 5 Editors)</div>
-      <div class="stat-pill"><strong>15+</strong> Shorts / Week Capacity</div>
-      <div class="stat-pill"><strong>4+</strong> Long-Form / Week</div>
+      <div id="portfolio-grid" class="portfolio-grid">
+        <!-- VLOGS / PODCASTS -->
+        <a href="https://youtu.be/TlJFaAvQqZY" target="_blank" class="video-card" data-cat="vlogs" data-featured="true">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/TlJFaAvQqZY/mqdefault.jpg" loading="lazy" alt="Builder Brigade 10 Horrible Home Features" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Vlogs / Podcasts</span>
+              <span class="card-metric">1.9M+ Views</span>
+            </div>
+            <h3 class="card-title">Builder Brigade — 10 Horrible Home Features</h3>
+            <p class="card-desc">Builder Brigade • Lead Editor • Listicle pacing, visual callouts, and audio mix.</p>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/GlxMoZMyhrs" target="_blank" class="video-card" data-cat="vlogs" data-featured="true">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/GlxMoZMyhrs/mqdefault.jpg" loading="lazy" alt="Davie Fogarty 1 Year to Make 10M" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Vlogs / Podcasts</span>
+              <span class="card-metric">1.5M+ Views</span>
+            </div>
+            <h3 class="card-title">Davie Fogarty — If I Had 1 Year to Make $10M</h3>
+            <p class="card-desc">Davie Fogarty • Video Editor • Narrative pacing, B-roll layering, and motion graphics.</p>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/Edr2LTIaNFQ" target="_blank" class="video-card" data-cat="vlogs" data-featured="true">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/Edr2LTIaNFQ/mqdefault.jpg" loading="lazy" alt="Davie Fogarty Failing Donut Shop" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Vlogs / Podcasts</span>
+              <span class="card-metric">1.1M+ Views</span>
+            </div>
+            <h3 class="card-title">Davie Fogarty — Can I Save This Failing Donut Shop?</h3>
+            <p class="card-desc">Davie Fogarty • Video Editor • Documentary turnaround story, color grade, and sound design.</p>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/O0iTti8z1C4" target="_blank" class="video-card" data-cat="vlogs" data-featured="true">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/O0iTti8z1C4/mqdefault.jpg" loading="lazy" alt="Builder Brigade 10 Most Hated Home Trends" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Vlogs / Podcasts</span>
+              <span class="card-metric">818K+ Views</span>
+            </div>
+            <h3 class="card-title">Builder Brigade — 10 Most Hated Home Trends</h3>
+            <p class="card-desc">Builder Brigade • Lead Editor • Fast educational pacing and visual overlays.</p>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/SVkNsw8FR8g" target="_blank" class="video-card" data-cat="vlogs" data-featured="true">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/SVkNsw8FR8g/mqdefault.jpg" loading="lazy" alt="Kanessa Muluneh 10M in 48 Hours" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Vlogs / Podcasts</span>
+              <span class="card-metric">309K+ Views</span>
+            </div>
+            <h3 class="card-title">Kanessa Muluneh — She Made $10M in 48 Hours</h3>
+            <p class="card-desc">Gulf Standard Time • Full Edit • 68-minute multi-cam podcast cut and cold-open trailer.</p>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/IRYfA1WjY0k" target="_blank" class="video-card" data-cat="vlogs">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/IRYfA1WjY0k/mqdefault.jpg" loading="lazy" alt="Davie Fogarty Comfrt 500M" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Vlogs / Podcasts</span>
+              <span class="card-metric">202K+ Views</span>
+            </div>
+            <h3 class="card-title">Davie Fogarty — How Comfrt Made $500M in 3 Years</h3>
+            <p class="card-desc">Davie Fogarty • Video Editor • 45-minute multi-cam founder interview and retention hook.</p>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/Tft587jhybg" target="_blank" class="video-card" data-cat="vlogs">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/Tft587jhybg/mqdefault.jpg" loading="lazy" alt="Davie Fogarty 100M a Year" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Vlogs / Podcasts</span>
+              <span class="card-metric">141K+ Views</span>
+            </div>
+            <h3 class="card-title">Davie Fogarty — How I Make $100M a Year</h3>
+            <p class="card-desc">Davie Fogarty • Video Editor • Documentary breakdown, custom graphics, and audio mix.</p>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/b82ibVe1rDA" target="_blank" class="video-card" data-cat="vlogs">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/b82ibVe1rDA/mqdefault.jpg" loading="lazy" alt="Davie Fogarty Bali Villas" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Vlogs / Podcasts</span>
+              <span class="card-metric">122K+ Views</span>
+            </div>
+            <h3 class="card-title">Davie Fogarty — $10M Selling Villas in Bali</h3>
+            <p class="card-desc">Davie Fogarty • Video Editor • On-location vlog edit and S-Log3 / D-Log M color grading.</p>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/zHxjbNV8gDU" target="_blank" class="video-card" data-cat="vlogs">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/zHxjbNV8gDU/mqdefault.jpg" loading="lazy" alt="Gulf Standard Time Podcast" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Vlogs / Podcasts</span>
+              <span class="card-metric">73-Min Podcast</span>
+            </div>
+            <h3 class="card-title">Gulf Standard Time — Business Acquisition Expert</h3>
+            <p class="card-desc">Gulf Standard Time • Full Edit • Multi-cam studio switching and broadcast audio mix.</p>
+          </div>
+        </a>
+
+        <!-- SHORTS / REELS -->
+        <a href="https://youtube.com/shorts/-vmx37VooDs" target="_blank" class="video-card" data-cat="shorts" data-featured="true">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/-vmx37VooDs/mqdefault.jpg" loading="lazy" alt="Top 5 Trending Apps Breakdown" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Shorts / Reels</span>
+              <span class="card-metric">5.2K+ Views</span>
+            </div>
+            <h3 class="card-title">Top 5 Trending Apps Breakdown</h3>
+            <p class="card-desc">ActDaVerse • Short-Form Editor • App logo motion graphics, transitions, and SFX.</p>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/shorts/yTps291c3xg" target="_blank" class="video-card" data-cat="shorts">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/yTps291c3xg/mqdefault.jpg" loading="lazy" alt="Five Apps to Download" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Shorts / Reels</span>
+              <span class="card-metric">YouTube Short</span>
+            </div>
+            <h3 class="card-title">TikTok Ban: Five Apps to Download Instead</h3>
+            <p class="card-desc">ActDaVerse • Short-Form Editor • Kinetic typography, icon animations, and tight pacing.</p>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/shorts/lEBxtAYBjJ8" target="_blank" class="video-card" data-cat="shorts">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/lEBxtAYBjJ8/mqdefault.jpg" loading="lazy" alt="She Buys Companies" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Shorts / Reels</span>
+              <span class="card-metric">Podcast Clip</span>
+            </div>
+            <h3 class="card-title">She Doesn't Save Money. She Buys Companies.</h3>
+            <p class="card-desc">Gulf Standard Time • Short-Form Editor • Podcast hook extraction and custom captions.</p>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/shorts/zW1ZyJMqwnQ" target="_blank" class="video-card" data-cat="shorts">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/zW1ZyJMqwnQ/mqdefault.jpg" loading="lazy" alt="Dubai Investments" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Shorts / Reels</span>
+              <span class="card-metric">Podcast Clip</span>
+            </div>
+            <h3 class="card-title">The #1 Way to Choose Investments in Dubai</h3>
+            <p class="card-desc">Gulf Standard Time • Short-Form Editor • B-roll overlays and highlighted subtitles.</p>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/reel/C7c0m0qNorS/" target="_blank" class="video-card" data-cat="shorts">
+          <div class="thumb-box ig-thumb">
+            <span class="ig-label">Instagram Reel</span>
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Shorts / Reels</span>
+              <span class="card-metric">Instagram</span>
+            </div>
+            <h3 class="card-title">Creator Retention Reel — Motion &amp; Captions</h3>
+            <p class="card-desc">Client Reel • Full Edit • Custom motion graphics, dynamic captions, and sound design.</p>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/reel/DIESLztstH7/" target="_blank" class="video-card" data-cat="shorts">
+          <div class="thumb-box ig-thumb">
+            <span class="ig-label">Instagram Reel</span>
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Shorts / Reels</span>
+              <span class="card-metric">Instagram</span>
+            </div>
+            <h3 class="card-title">Founder Talking-Head Reel — Fast Pacing</h3>
+            <p class="card-desc">Client Reel • Full Edit • Visual hook optimization, B-roll layering, and audio polish.</p>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/reel/DIdvwdOtHh9/" target="_blank" class="video-card" data-cat="shorts">
+          <div class="thumb-box ig-thumb">
+            <span class="ig-label">Instagram Reel</span>
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Shorts / Reels</span>
+              <span class="card-metric">Instagram</span>
+            </div>
+            <h3 class="card-title">Short-Form Storytelling Reel</h3>
+            <p class="card-desc">Client Reel • Full Edit • Beat-synced cuts, B-roll integration, and retention pacing.</p>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/reel/DH-yv2eu8ai/" target="_blank" class="video-card" data-cat="shorts">
+          <div class="thumb-box ig-thumb">
+            <span class="ig-label">Instagram Reel</span>
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">Shorts / Reels</span>
+              <span class="card-metric">Instagram</span>
+            </div>
+            <h3 class="card-title">Brand &amp; Creator Growth Reel</h3>
+            <p class="card-desc">Client Reel • Full Edit • Kinetic typography, clean color grading, and SFX.</p>
+          </div>
+        </a>
+
+        <!-- DTC UGC VIDEOS -->
+        <a href="https://youtube.com/shorts/lICBrk4w3EI" target="_blank" class="video-card" data-cat="ugc" data-featured="true">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/lICBrk4w3EI/mqdefault.jpg" loading="lazy" alt="DTC Product Hook Creative" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">DTC UGC Videos</span>
+              <span class="card-metric">Direct Response</span>
+            </div>
+            <h3 class="card-title">Direct-Response Product Hook Creative</h3>
+            <p class="card-desc">DTC Brand • Performance Editor • 3-second visual hook, problem/solution cut, and CTA.</p>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/shorts/W7oGIGxS_7I" target="_blank" class="video-card" data-cat="ugc">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/W7oGIGxS_7I/mqdefault.jpg" loading="lazy" alt="Brand UGC Testimonial Ad" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">DTC UGC Videos</span>
+              <span class="card-metric">ROAS Focused</span>
+            </div>
+            <h3 class="card-title">Health &amp; Wellness UGC Testimonial Ad</h3>
+            <p class="card-desc">DTC Brand • Performance Editor • Testimonial pacing, product callouts, and audio mix.</p>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/shorts/zmCJUdmPaG0" target="_blank" class="video-card" data-cat="ugc">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/zmCJUdmPaG0/mqdefault.jpg" loading="lazy" alt="DTC Performance Ad" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">DTC UGC Videos</span>
+              <span class="card-metric">UGC Ad</span>
+            </div>
+            <h3 class="card-title">DTC Product Demonstration Ad</h3>
+            <p class="card-desc">DTC Brand • Performance Editor • Fast visual demo, benefit captions, and retention edit.</p>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/shorts/v-xICfQpPeA" target="_blank" class="video-card" data-cat="ugc">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/v-xICfQpPeA/mqdefault.jpg" loading="lazy" alt="E-Commerce UGC Spot" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">DTC UGC Videos</span>
+              <span class="card-metric">DTC Creative</span>
+            </div>
+            <h3 class="card-title">E-Commerce UGC Product Showcase</h3>
+            <p class="card-desc">DTC Brand • Performance Editor • Clean product showcase and conversion-focused pacing.</p>
+          </div>
+        </a>
+
+        <!-- AI ADS & AI SERIES -->
+        <a href="https://youtube.com/shorts/9kiUTUDokck" target="_blank" class="video-card" data-cat="ai" data-featured="true">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/9kiUTUDokck/mqdefault.jpg" loading="lazy" alt="Audio-First AI Commercial" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">AI Ads &amp; AI Series</span>
+              <span class="card-metric">AI Commercial</span>
+            </div>
+            <h3 class="card-title">Audio-First AI Brand Commercial</h3>
+            <p class="card-desc">AI Production • Director &amp; Editor • ElevenLabs voiceover synced with Google Flow visuals.</p>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/shorts/OMX2eo4GOGw" target="_blank" class="video-card" data-cat="ai">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/OMX2eo4GOGw/mqdefault.jpg" loading="lazy" alt="Cinematic AI Product Ad" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">AI Ads &amp; AI Series</span>
+              <span class="card-metric">AI Ad Spot</span>
+            </div>
+            <h3 class="card-title">Cinematic AI Product Advertisement</h3>
+            <p class="card-desc">AI Production • Director &amp; Editor • Consistent AI scenes, captions, and custom SFX.</p>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/shorts/0IgTCu7fE7g" target="_blank" class="video-card" data-cat="ai">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/0IgTCu7fE7g/mqdefault.jpg" loading="lazy" alt="AI Series Part 1" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">AI Ads &amp; AI Series</span>
+              <span class="card-metric">AI Series</span>
+            </div>
+            <h3 class="card-title">AI Visual Storytelling — Episode 1</h3>
+            <p class="card-desc">AI Series • End-to-End Production • Audio-first narrative pacing and NLE compositing.</p>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/shorts/rG17h-FQcho" target="_blank" class="video-card" data-cat="ai">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/rG17h-FQcho/mqdefault.jpg" loading="lazy" alt="AI Series Part 2" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">AI Ads &amp; AI Series</span>
+              <span class="card-metric">AI Series</span>
+            </div>
+            <h3 class="card-title">AI Visual Storytelling — Episode 2</h3>
+            <p class="card-desc">AI Series • End-to-End Production • Visual hook, color grading, and atmospheric SFX.</p>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/shorts/f_PEeLSSxiM" target="_blank" class="video-card" data-cat="ai">
+          <div class="thumb-box">
+            <img src="https://i.ytimg.com/vi/f_PEeLSSxiM/mqdefault.jpg" loading="lazy" alt="AI Direct Response Ad" />
+            <div class="play-badge">&#9658;</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-badge">AI Ads &amp; AI Series</span>
+              <span class="card-metric">AI UGC / Ad</span>
+            </div>
+            <h3 class="card-title">AI Direct-Response Ad Creative</h3>
+            <p class="card-desc">AI Production • Director &amp; Editor • AI visual storytelling paired with conversion pacing.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= ABOUT ME VIEW ================= -->
+  <section id="view-about" class="view-section">
+    <div class="about-wrapper">
+      <div class="about-hero">
+        <img src="profile.jpg" alt="Bruk Nega" class="about-avatar" onerror="this.style.display='none'" />
+        <div>
+          <h2>I lead post-production for high-growth creators and DTC brands.</h2>
+          <p>
+            I'm Bruk Nega, a Senior Video Editor and AI Video Specialist with a B.Sc. in Mechanical Design. I combine engineering-grade workflow discipline with retention-focused storytelling—leading a team of 5 editors to deliver consistent long-form and short-form output at scale.
+          </p>
+        </div>
+      </div>
+
+      <div class="stats-grid about-stats">
+        <div class="stat-card">
+          <span class="stat-value">6.2M+</span>
+          <span class="stat-label">Verified Views</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">Team of 5</span>
+          <span class="stat-label">Editors Managed</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">15+ / Wk</span>
+          <span class="stat-label">Short-Form Deliveries</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">4+ / Wk</span>
+          <span class="stat-label">Long-Form Deliveries</span>
+        </div>
+      </div>
+
+      <h3 class="section-heading">Notable Clients &amp; Verified Credits</h3>
+      <div class="clients-grid">
+        <div class="client-card">
+          <div>
+            <div class="client-header">
+              <span class="client-name">Davie Fogarty</span>
+              <span class="client-role">Vlogs &amp; Docs</span>
+            </div>
+            <p class="client-desc">Edited long-form business documentaries, founder interviews, and on-location vlogs.</p>
+          </div>
+          <div class="client-links">
+            <a href="https://youtu.be/GlxMoZMyhrs" target="_blank" class="credit-link">1.5M+ Views ↗</a>
+            <a href="https://youtu.be/Edr2LTIaNFQ" target="_blank" class="credit-link">1.1M+ Views ↗</a>
+          </div>
+        </div>
+
+        <div class="client-card">
+          <div>
+            <div class="client-header">
+              <span class="client-name">Builder Brigade</span>
+              <span class="client-role">Lead Editor</span>
+            </div>
+            <p class="client-desc">High-retention listicle pacing, visual callouts, and commentary cuts for mass-appeal home builds.</p>
+          </div>
+          <div class="client-links">
+            <a href="https://youtu.be/TlJFaAvQqZY" target="_blank" class="credit-link">1.9M+ Views ↗</a>
+            <a href="https://youtu.be/O0iTti8z1C4" target="_blank" class="credit-link">818K+ Views ↗</a>
+          </div>
+        </div>
+
+        <div class="client-card">
+          <div>
+            <div class="client-header">
+              <span class="client-name">Kanessa Muluneh</span>
+              <span class="client-role">Podcast &amp; Shorts</span>
+            </div>
+            <p class="client-desc">Multi-cam studio podcast editing, trailer cold opens, and short-form social distribution.</p>
+          </div>
+          <div class="client-links">
+            <a href="https://youtu.be/SVkNsw8FR8g" target="_blank" class="credit-link">309K+ Views ↗</a>
+          </div>
+        </div>
+
+        <div class="client-card">
+          <div>
+            <div class="client-header">
+              <span class="client-name">Gulf Standard Time</span>
+              <span class="client-role">Multi-Cam Podcast</span>
+            </div>
+            <p class="client-desc">70+ minute studio podcast episodes, broadcast audio mastering, and viral vertical clips.</p>
+          </div>
+          <div class="client-links">
+            <a href="https://youtu.be/zHxjbNV8gDU" target="_blank" class="credit-link">Full Episode ↗</a>
+            <a href="https://youtube.com/shorts/lEBxtAYBjJ8" target="_blank" class="credit-link">Short Clip ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack-strip">
+        <span class="stack-label">Core Stack</span>
+        <span class="stack-item">Premiere Pro</span>
+        <span class="stack-item">DaVinci Resolve (S-Log3 / D-Log M)</span>
+        <span class="stack-item">After Effects &amp; Mocha AE</span>
+        <span class="stack-item">ElevenLabs</span>
+        <span class="stack-item">Google Flow</span>
+      </div>
+
+      <a href="#work" class="back-btn" onclick="switchView('work')">← Back to Video Portfolio</a>
     </div>
   </section>
 
-  <!-- ================= PAGE 1: WORK PORTFOLIO GRID ================= -->
-  <section id="work-page" class="portfolio-section">
-    <div class="filter-bar">
-      <button class="filter-btn active" onclick="filterVideos('all', this)">All Works</button>
-      <button class="filter-btn" onclick="filterVideos('shorts', this)">Shorts / Reels</button>
-      <button class="filter-btn" onclick="filterVideos('ugc', this)">DTC UGC Videos</button>
-      <button class="filter-btn" onclick="filterVideos('vlogs', this)">Vlogs / Podcasts</button>
-      <button class="filter-btn" onclick="filterVideos('ai', this)">AI Ads & AI Series</button>
-    </div>
-
-    <div id="portfolio-grid" class="portfolio-grid">
-
-      <!-- VLOGS / PODCASTS (9 VIDEOS - CLICK PLAYS INLINE) -->
-      <div class="video-card" data-cat="vlogs" data-yt-id="TlJFaAvQqZY">
-        <div class="thumb-box" onclick="playInline(this, 'TlJFaAvQqZY')">
-          <img src="https://i.ytimg.com/vi/TlJFaAvQqZY/maxresdefault.jpg" onload="checkThumb(this, 'TlJFaAvQqZY')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Vlogs / Podcasts</span><span class="card-metric">1.9M+ Views</span></div>
-          <h3 class="card-title">10 Horrible Home Features</h3>
-          <p class="card-desc">High-retention listicle pacing, visual callouts & crisp commentary cuts.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="vlogs" data-yt-id="GlxMoZMyhrs">
-        <div class="thumb-box" onclick="playInline(this, 'GlxMoZMyhrs')">
-          <img src="https://i.ytimg.com/vi/GlxMoZMyhrs/maxresdefault.jpg" onload="checkThumb(this, 'GlxMoZMyhrs')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Vlogs / Podcasts</span><span class="card-metric">1.5M+ Views</span></div>
-          <h3 class="card-title">If I Had 1 Year to Make $10M: This Is My Plan</h3>
-          <p class="card-desc">Long-form narrative storytelling, B-roll pacing, motion graphics & audio mix.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="vlogs" data-yt-id="Edr2LTIaNFQ">
-        <div class="thumb-box" onclick="playInline(this, 'Edr2LTIaNFQ')">
-          <img src="https://i.ytimg.com/vi/Edr2LTIaNFQ/maxresdefault.jpg" onload="checkThumb(this, 'Edr2LTIaNFQ')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Vlogs / Podcasts</span><span class="card-metric">1.1M+ Views</span></div>
-          <h3 class="card-title">Can I Save This Failing Donut Shop?</h3>
-          <p class="card-desc">Documentary turnaround vlog, color grading & emotional storytelling.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="vlogs" data-yt-id="O0iTti8z1C4">
-        <div class="thumb-box" onclick="playInline(this, 'O0iTti8z1C4')">
-          <img src="https://i.ytimg.com/vi/O0iTti8z1C4/maxresdefault.jpg" onload="checkThumb(this, 'O0iTti8z1C4')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Vlogs / Podcasts</span><span class="card-metric">818K+ Views</span></div>
-          <h3 class="card-title">The 10 Most Hated Home Trends (Ranked by Actual Homeowners)</h3>
-          <p class="card-desc">Fast-moving educational edit with visual overlays and seamless transitions.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="vlogs" data-yt-id="SVkNsw8FR8g">
-        <div class="thumb-box" onclick="playInline(this, 'SVkNsw8FR8g')">
-          <img src="https://i.ytimg.com/vi/SVkNsw8FR8g/maxresdefault.jpg" onload="checkThumb(this, 'SVkNsw8FR8g')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Vlogs / Podcasts</span><span class="card-metric">309K+ Views</span></div>
-          <h3 class="card-title">She Made $10M in 48 Hours and Walked Away</h3>
-          <p class="card-desc">Full 68-minute multi-cam podcast edit, trailer intro hook & audio mastering.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="vlogs" data-yt-id="IRYfA1WjY0k">
-        <div class="thumb-box" onclick="playInline(this, 'IRYfA1WjY0k')">
-          <img src="https://i.ytimg.com/vi/IRYfA1WjY0k/maxresdefault.jpg" onload="checkThumb(this, 'IRYfA1WjY0k')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Vlogs / Podcasts</span><span class="card-metric">202K+ Views</span></div>
-          <h3 class="card-title">How Comfrt Made $500M in 3 Years (and Became #1 Clothing Brand on TikTok Shops)</h3>
-          <p class="card-desc">45-minute founder interview podcast, multi-angle switching & retention intro.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="vlogs" data-yt-id="Tft587jhybg">
-        <div class="thumb-box" onclick="playInline(this, 'Tft587jhybg')">
-          <img src="https://i.ytimg.com/vi/Tft587jhybg/maxresdefault.jpg" onload="checkThumb(this, 'Tft587jhybg')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Vlogs / Podcasts</span><span class="card-metric">141K+ Views</span></div>
-          <h3 class="card-title">How I Make $100M a Year (After 12 Failed Businesses)</h3>
-          <p class="card-desc">YouTube documentary breakdown with custom graphics, B-roll & sound design.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="vlogs" data-yt-id="b82ibVe1rDA">
-        <div class="thumb-box" onclick="playInline(this, 'b82ibVe1rDA')">
-          <img src="https://i.ytimg.com/vi/b82ibVe1rDA/maxresdefault.jpg" onload="checkThumb(this, 'b82ibVe1rDA')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Vlogs / Podcasts</span><span class="card-metric">122K+ Views</span></div>
-          <h3 class="card-title">This 32-Year-Old Makes $10M Selling Villas in Bali</h3>
-          <p class="card-desc">On-location Bali tour vlog, S-Log3/D-Log M color grading & dynamic pacing.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="vlogs" data-yt-id="zHxjbNV8gDU">
-        <div class="thumb-box" onclick="playInline(this, 'zHxjbNV8gDU')">
-          <img src="https://i.ytimg.com/vi/zHxjbNV8gDU/maxresdefault.jpg" onload="checkThumb(this, 'zHxjbNV8gDU')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Vlogs / Podcasts</span><span class="card-metric">73-Min Podcast</span></div>
-          <h3 class="card-title">Business Acquisition Expert: Why Build for 10 Years When You Can Buy in 90 Days?</h3>
-          <p class="card-desc">Multi-cam studio podcast cut, high-tension cold open & broadcast audio mix.</p>
-        </div>
-      </div>
-
-      <!-- SHORTS / REELS (9 VIDEOS - CLICK PLAYS INLINE) -->
-      <div class="video-card" data-cat="shorts" data-yt-id="yTps291c3xg">
-        <div class="thumb-box vertical" onclick="playInline(this, 'yTps291c3xg')">
-          <img src="https://i.ytimg.com/vi/yTps291c3xg/maxresdefault.jpg" onload="checkThumb(this, 'yTps291c3xg')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Shorts / Reels</span><span class="card-metric">ActDaVerse Short</span></div>
-          <h3 class="card-title">🚨 TikTok Countdown: 89 Days Until Potential Ban! 🚨</h3>
-          <p class="card-desc">Fast-paced kinetic typography, custom icon animations & SFX layering.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="shorts" data-yt-id="-vmx37VooDs">
-        <div class="thumb-box vertical" onclick="playInline(this, '-vmx37VooDs')">
-          <img src="https://i.ytimg.com/vi/-vmx37VooDs/maxresdefault.jpg" onload="checkThumb(this, '-vmx37VooDs')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Shorts / Reels</span><span class="card-metric">5.2K+ Views</span></div>
-          <h3 class="card-title">TikTok is officially banned! Here are five apps to download</h3>
-          <p class="card-desc">Dynamic app logo motion graphics, glowing transitions & tight retention cuts.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="shorts" data-yt-id="lEBxtAYBjJ8">
-        <div class="thumb-box vertical" onclick="playInline(this, 'lEBxtAYBjJ8')">
-          <img src="https://i.ytimg.com/vi/lEBxtAYBjJ8/maxresdefault.jpg" onload="checkThumb(this, 'lEBxtAYBjJ8')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Shorts / Reels</span><span class="card-metric">Gulf Standard Time</span></div>
-          <h3 class="card-title">She Doesn't Save Money. She Buys Companies. #mindset #wealth #success</h3>
-          <p class="card-desc">High-impact podcast hook clip with clean captions and punchy audio mastering.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="shorts" data-yt-id="zW1ZyJMqwnQ">
-        <div class="thumb-box vertical" onclick="playInline(this, 'zW1ZyJMqwnQ')">
-          <img src="https://i.ytimg.com/vi/zW1ZyJMqwnQ/maxresdefault.jpg" onload="checkThumb(this, 'zW1ZyJMqwnQ')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Shorts / Reels</span><span class="card-metric">Podcast Reel</span></div>
-          <h3 class="card-title">The Number One Way to Choose Investments in Dubai | @AliyahMariaBee</h3>
-          <p class="card-desc">Luxury B-roll overlays, custom highlighted subtitles & smooth pacing.</p>
-        </div>
-      </div>
-
-      <!-- 5 INSTAGRAM REELS WITH PRE-LOADED LIVE THUMBNAIL PREVIEWS -->
-      <div class="video-card" data-cat="shorts" data-ig-shortcode="C7c0m0qNorS">
-        <div class="thumb-box vertical insta-embed-box">
-          <iframe src="https://www.instagram.com/reel/C7c0m0qNorS/embed/" loading="lazy" scrolling="no" allowtransparency="true" allow="encrypted-media" allowfullscreen></iframe>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Shorts / Reels</span><span class="card-metric">Instagram Reel</span></div>
-          <h3 class="card-title" id="ig-title-C7c0m0qNorS">Builder Brigade: Structural Beam & Framing Breakdown</h3>
-          <p class="card-desc">Custom motion graphics, dynamic captions & sound design for Instagram.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="shorts" data-ig-shortcode="DIESLztstH7">
-        <div class="thumb-box vertical insta-embed-box">
-          <iframe src="https://www.instagram.com/reel/DIESLztstH7/embed/" loading="lazy" scrolling="no" allowtransparency="true" allow="encrypted-media" allowfullscreen></iframe>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Shorts / Reels</span><span class="card-metric">Instagram Reel</span></div>
-          <h3 class="card-title" id="ig-title-DIESLztstH7">High-Retention Creator Reel (DIESLztstH7)</h3>
-          <p class="card-desc">Fast-cut social reel with engaging visual hooks and audio polish.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="shorts" data-ig-shortcode="DIdvwdOtHh9">
-        <div class="thumb-box vertical insta-embed-box">
-          <iframe src="https://www.instagram.com/reel/DIdvwdOtHh9/embed/" loading="lazy" scrolling="no" allowtransparency="true" allow="encrypted-media" allowfullscreen></iframe>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Shorts / Reels</span><span class="card-metric">Instagram Reel</span></div>
-          <h3 class="card-title" id="ig-title-DIdvwdOtHh9">Viral Storytelling & B-Roll Reel (DIdvwdOtHh9)</h3>
-          <p class="card-desc">Short-form storytelling, B-roll integration, and retention-driven pacing.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="shorts" data-ig-shortcode="DH-yv2eu8ai">
-        <div class="thumb-box vertical insta-embed-box">
-          <iframe src="https://www.instagram.com/reel/DH-yv2eu8ai/embed/" loading="lazy" scrolling="no" allowtransparency="true" allow="encrypted-media" allowfullscreen></iframe>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Shorts / Reels</span><span class="card-metric">Instagram Reel</span></div>
-          <h3 class="card-title" id="ig-title-DH-yv2eu8ai">Kinetic Typography & Creator Cut (DH-yv2eu8ai)</h3>
-          <p class="card-desc">Kinetic typography, beat-synced cuts, and clean color grading.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="shorts" data-ig-shortcode="DGLZ6ZDOsbW">
-        <div class="thumb-box vertical insta-embed-box">
-          <iframe src="https://www.instagram.com/reel/DGLZ6ZDOsbW/embed/" loading="lazy" scrolling="no" allowtransparency="true" allow="encrypted-media" allowfullscreen></iframe>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">Shorts / Reels</span><span class="card-metric">Instagram Reel</span></div>
-          <h3 class="card-title" id="ig-title-DGLZ6ZDOsbW">Social Growth & Hook Retention Reel (DGLZ6ZDOsbW)</h3>
-          <p class="card-desc">Engaging 3-second hook, clean subtitle styling, and crisp audio mix.</p>
-        </div>
-      </div>
-
-      <!-- DTC UGC VIDEOS (4 VIDEOS - CLICK PLAYS INLINE) -->
-      <div class="video-card" data-cat="ugc" data-yt-id="lICBrk4w3EI">
-        <div class="thumb-box vertical" onclick="playInline(this, 'lICBrk4w3EI')">
-          <img src="https://i.ytimg.com/vi/lICBrk4w3EI/maxresdefault.jpg" onload="checkThumb(this, 'lICBrk4w3EI')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">DTC UGC Videos</span><span class="card-metric">Conversion Hook</span></div>
-          <h3 class="card-title" id="yt-title-lICBrk4w3EI">Direct-Response DTC Product Creative</h3>
-          <p class="card-desc">Scroll-stopping 3-second hook, problem/solution pacing & CTA overlay.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="ugc" data-yt-id="W7oGIGxS_7I">
-        <div class="thumb-box vertical" onclick="playInline(this, 'W7oGIGxS_7I')">
-          <img src="https://i.ytimg.com/vi/W7oGIGxS_7I/maxresdefault.jpg" onload="checkThumb(this, 'W7oGIGxS_7I')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">DTC UGC Videos</span><span class="card-metric">ROAS Focused</span></div>
-          <h3 class="card-title" id="yt-title-W7oGIGxS_7I">High-Converting Brand UGC Ad</h3>
-          <p class="card-desc">Direct-to-consumer testimonial pacing, product callouts & sound design.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="ugc" data-yt-id="zmCJUdmPaG0">
-        <div class="thumb-box vertical" onclick="playInline(this, 'zmCJUdmPaG0')">
-          <img src="https://i.ytimg.com/vi/zmCJUdmPaG0/maxresdefault.jpg" onload="checkThumb(this, 'zmCJUdmPaG0')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">DTC UGC Videos</span><span class="card-metric">UGC Ad</span></div>
-          <h3 class="card-title" id="yt-title-zmCJUdmPaG0">DTC Performance Ad Creative</h3>
-          <p class="card-desc">Fast-paced visual demonstration, dynamic captions & retention editing.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="ugc" data-yt-id="v-xICfQpPeA">
-        <div class="thumb-box vertical" onclick="playInline(this, 'v-xICfQpPeA')">
-          <img src="https://i.ytimg.com/vi/v-xICfQpPeA/maxresdefault.jpg" onload="checkThumb(this, 'v-xICfQpPeA')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">DTC UGC Videos</span><span class="card-metric">DTC Creative</span></div>
-          <h3 class="card-title" id="yt-title-v-xICfQpPeA">E-Commerce UGC Product Spot</h3>
-          <p class="card-desc">Clean product showcase, benefit-driven captions & punchy audio mix.</p>
-        </div>
-      </div>
-
-      <!-- AI ADS & AI SERIES (8 ACTIVE VIDEOS - CLICK PLAYS INLINE & TITLES AUTO-SYNC) -->
-      <div class="video-card" data-cat="ai" data-yt-id="9kiUTUDokck">
-        <div class="thumb-box vertical" onclick="playInline(this, '9kiUTUDokck')">
-          <img src="https://i.ytimg.com/vi/9kiUTUDokck/maxresdefault.jpg" onload="checkThumb(this, '9kiUTUDokck')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">AI Ads & AI Series</span><span class="card-metric">AI Ad Creative</span></div>
-          <h3 class="card-title" id="yt-title-9kiUTUDokck">AI Commercial & Audio-First Brand Spot</h3>
-          <p class="card-desc">ElevenLabs voiceover synced with Google Flow AI visuals and custom SFX.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="ai" data-yt-id="OMX2eo4GOGw">
-        <div class="thumb-box vertical" onclick="playInline(this, 'OMX2eo4GOGw')">
-          <img src="https://i.ytimg.com/vi/OMX2eo4GOGw/maxresdefault.jpg" onload="checkThumb(this, 'OMX2eo4GOGw')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">AI Ads & AI Series</span><span class="card-metric">AI Commercial</span></div>
-          <h3 class="card-title" id="yt-title-OMX2eo4GOGw">Cinematic AI Product Advertisement</h3>
-          <p class="card-desc">Consistent AI subject generation, dynamic captions & sound effect layering.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="ai" data-yt-id="0IgTCu7fE7g">
-        <div class="thumb-box vertical" onclick="playInline(this, '0IgTCu7fE7g')">
-          <img src="https://i.ytimg.com/vi/0IgTCu7fE7g/maxresdefault.jpg" onload="checkThumb(this, '0IgTCu7fE7g')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">AI Ads & AI Series</span><span class="card-metric">AI Series</span></div>
-          <h3 class="card-title" id="yt-title-0IgTCu7fE7g">AI Storytelling & Visual Series</h3>
-          <p class="card-desc">Audio-first narrative pacing with AI-generated scenes and NLE compositing.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="ai" data-yt-id="rG17h-FQcho">
-        <div class="thumb-box vertical" onclick="playInline(this, 'rG17h-FQcho')">
-          <img src="https://i.ytimg.com/vi/rG17h-FQcho/maxresdefault.jpg" onload="checkThumb(this, 'rG17h-FQcho')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">AI Ads & AI Series</span><span class="card-metric">AI Ad Spot</span></div>
-          <h3 class="card-title" id="yt-title-rG17h-FQcho">AI Brand Spot & Visual Hook</h3>
-          <p class="card-desc">High-retention AI visual hook, custom color grade, and immersive sound design.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="ai" data-yt-id="f_PEeLSSxiM">
-        <div class="thumb-box vertical" onclick="playInline(this, 'f_PEeLSSxiM')">
-          <img src="https://i.ytimg.com/vi/f_PEeLSSxiM/maxresdefault.jpg" onload="checkThumb(this, 'f_PEeLSSxiM')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">AI Ads & AI Series</span><span class="card-metric">AI UGC / Ad</span></div>
-          <h3 class="card-title" id="yt-title-f_PEeLSSxiM">AI Direct-Response Ad Creative</h3>
-          <p class="card-desc">AI-generated visual storytelling paired with conversion-focused pacing.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="ai" data-yt-id="275p2LpWT7A">
-        <div class="thumb-box vertical" onclick="playInline(this, '275p2LpWT7A')">
-          <img src="https://i.ytimg.com/vi/275p2LpWT7A/maxresdefault.jpg" onload="checkThumb(this, '275p2LpWT7A')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">AI Ads & AI Series</span><span class="card-metric">AI Ad Creative</span></div>
-          <h3 class="card-title" id="yt-title-275p2LpWT7A">AI Motion & Commercial Cut</h3>
-          <p class="card-desc">Precision shot timing built around ElevenLabs voiceover and AI motion assets.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="ai" data-yt-id="YsZqS4nKVhU">
-        <div class="thumb-box vertical" onclick="playInline(this, 'YsZqS4nKVhU')">
-          <img src="https://i.ytimg.com/vi/YsZqS4nKVhU/maxresdefault.jpg" onload="checkThumb(this, 'YsZqS4nKVhU')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">AI Ads & AI Series</span><span class="card-metric">AI Series</span></div>
-          <h3 class="card-title" id="yt-title-YsZqS4nKVhU">AI Series Short-Form Storytelling</h3>
-          <p class="card-desc">End-to-end AI visual generation, kinetic captions, and audio mastering.</p>
-        </div>
-      </div>
-
-      <div class="video-card" data-cat="ai" data-yt-id="hHDkUquumb8">
-        <div class="thumb-box vertical" onclick="playInline(this, 'hHDkUquumb8')">
-          <img src="https://i.ytimg.com/vi/hHDkUquumb8/maxresdefault.jpg" onload="checkThumb(this, 'hHDkUquumb8')" loading="lazy" alt="" />
-          <div class="play-badge">&#9658;</div>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span class="card-badge">AI Ads & AI Series</span><span class="card-metric">AI Ad / Series</span></div>
-          <h3 class="card-title" id="yt-title-hHDkUquumb8">AI Viral Short & Commercial Spot</h3>
-          <p class="card-desc">Seamless AI scene transitions, sound design, and high-retention pacing.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= PAGE 2: ABOUT ME SECTION ================= -->
-  <section id="about-page" class="about-section hidden-page">
-
-    <!-- BIO CARD WITH 140PX HEADSHOT (NO EM-DASHES, NO AGENCY NAME, INCLUDES TEAM OF 5 LEADERSHIP) -->
-    <div class="about-hero-card">
-      <img
-        src="profile.jpg"
-        alt="Bruk Nega"
-        class="about-avatar"
-        onerror="if(!this.dataset.t){this.dataset.t=1;this.src='profile.png';}else if(this.dataset.t==1){this.dataset.t=2;this.src='profile.jpeg';}else if(this.dataset.t==2){this.dataset.t=3;this.src='profile.jpg.jpg';}else if(this.dataset.t==3){this.dataset.t=4;this.src='profile.jpg.png';}else{this.src='https://ui-avatars.com/api/?name=Bruk+Nega&background=1e1e26&color=fff&size=200';}"
-      />
-      <div class="about-intro">
-        <span class="about-tag">Senior Video Editor & Team Lead</span>
-        <h2>Bruk Nega: Senior Video Editor & AI Video Specialist</h2>
-        <p>
-          With a background in Mechanical Design (B.Sc.) and extensive agency and freelance post-production experience, I am a Senior Video Editor who has worked in agencies leading a team of 5 editors while crafting content for top global creators and brands. I engineer edits built for audience retention, watch time, and direct-response conversion.
-        </p>
-        <p>
-          Whether cutting 60+ minute multi-cam studio podcasts, documentary business vlogs, high-converting DTC UGC ads, or audio-first AI commercials, I combine precision narrative pacing with broadcast-grade color grading and sound design.
-        </p>
-      </div>
-    </div>
-
-    <!-- VERIFIED VIEWS & OUTPUT METRICS -->
-    <div class="metrics-grid">
-      <div class="metric-card">
-        <div class="metric-number">6.2M+</div>
-        <div class="metric-label">Verified Portfolio Views</div>
-        <div class="metric-sub">Across featured YouTube long-form & short-form cuts</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-number">Team of 5</div>
-        <div class="metric-label">Senior Agency Leadership</div>
-        <div class="metric-sub">Led and quality-checked a team of 5 video editors</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-number">15+ / Wk</div>
-        <div class="metric-label">Short-Form Output</div>
-        <div class="metric-sub">Up to 3 high-retention Shorts, Reels, or UGC Ads daily</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-number">4+ / Wk</div>
-        <div class="metric-label">Long-Form Deliveries</div>
-        <div class="metric-sub">Full-length vlogs, documentaries & multi-cam podcasts</div>
-      </div>
-    </div>
-
-    <!-- CLIENTS & CREATORS WORKED WITH -->
-    <h3 class="about-subheading">Notable Clients, Creators & Channels</h3>
-    <div class="clients-grid">
-      <div class="client-card">
-        <div class="client-header">
-          <span class="client-name">Davie Fogarty</span>
-          <span class="client-views">3.1M+ Views</span>
-        </div>
-        <div class="client-role">Long-Form Vlogs, Documentaries, Podcasts & Reels</div>
-        <p class="client-desc">
-          Edited flagship entrepreneurship documentaries and founder interviews including <em>If I Had 1 Year to Make $10M</em> (1.5M+ views), <em>Can I Save This Failing Donut Shop?</em> (1.1M+ views), <em>How Comfrt Made $500M</em> (202K+ views), and Bali Villa vlogs.
-        </p>
-      </div>
-
-      <div class="client-card">
-        <div class="client-header">
-          <span class="client-name">Builder Brigade</span>
-          <span class="client-views">2.7M+ Views</span>
-        </div>
-        <div class="client-role">High-Retention Long-Form Commentary & Listicles</div>
-        <p class="client-desc">
-          Fast-paced educational home-building breakdowns including <em>10 Horrible Home Features</em> (1.9M+ views) and <em>The 10 Most Hated Home Trends</em> (818K+ views) with custom visual callouts and B-roll overlays.
-        </p>
-      </div>
-
-      <div class="client-card">
-        <div class="client-header">
-          <span class="client-name">Kanessa Muluneh & GST Podcast</span>
-          <span class="client-views">315K+ Views</span>
-        </div>
-        <div class="client-role">Full Multi-Cam Studio Podcasts & Viral Shorts</div>
-        <p class="client-desc">
-          Edited full 68 to 73 minute studio podcast episodes (including <em>She Made $10M in 48 Hours</em> with 309K+ views and the Deep Lalli M&A interview) plus high-converting vertical 9:16 Shorts and Reels.
-        </p>
-      </div>
-
-      <div class="client-card">
-        <div class="client-header">
-          <span class="client-name">Daniel Truklja & ActDaVerse</span>
-          <span class="client-views">Viral Reels & Shorts</span>
-        </div>
-        <div class="client-role">Short-Form Retention Reels & Social Strategy</div>
-        <p class="client-desc">
-          Crafted kinetic-typography Reels, Shark Tank breakdown clips, and multi-platform creator Shorts with custom motion graphics, glowing transitions, and tight hook pacing.
-        </p>
-      </div>
-
-      <div class="client-card">
-        <div class="client-header">
-          <span class="client-name">DTC Brands & E-Commerce</span>
-          <span class="client-views">ROAS Driven</span>
-        </div>
-        <div class="client-role">Direct-Response UGC Ads & AI Product Commercials</div>
-        <p class="client-desc">
-          Engineered scroll-stopping 3-second visual hooks, problem/solution UGC ads, and stationary front-facing AI product commercials designed to maximize click-through and ROAS.
-        </p>
-      </div>
-
-      <div class="client-card">
-        <div class="client-header">
-          <span class="client-name">Curio Clips & AI Series</span>
-          <span class="client-views">AI Automation</span>
-        </div>
-        <div class="client-role">Audio-First AI Commercials & Short-Form Series</div>
-        <p class="client-desc">
-          Full-stack AI video production combining ElevenLabs voiceover timing inside Premiere Pro and DaVinci Resolve with Google Flow visual generation and layered sound effects.
-        </p>
-      </div>
-    </div>
-
-    <!-- 4 STYLES MASTERED -->
-    <h3 class="about-subheading">Editing Styles & Technical Mastery</h3>
-    <div class="styles-grid">
-      <div class="style-card">
-        <h4>Shorts / Reels</h4>
-        <p>
-          Sub-3-second hook retention, kinetic typography, custom motion callouts, beat-synced B-roll, and punchy SFX layering built for YouTube Shorts, Instagram Reels, and TikTok.
-        </p>
-        <div class="tag-row">
-          <span class="tech-tag">Kinetic Captions</span>
-          <span class="tech-tag">Hook Pacing</span>
-          <span class="tech-tag">Sound Design</span>
-        </div>
-      </div>
-
-      <div class="style-card">
-        <h4>DTC UGC Videos</h4>
-        <p>
-          Conversion-engineered direct-to-consumer creatives built around hook-problem-agitate-solve frameworks, clear product callouts, and high-ROAS call-to-action overlays.
-        </p>
-        <div class="tag-row">
-          <span class="tech-tag">3-Sec Visual Hooks</span>
-          <span class="tech-tag">Product Overlays</span>
-          <span class="tech-tag">Direct Response</span>
-        </div>
-      </div>
-
-      <div class="style-card">
-        <h4>Vlogs / Podcasts</h4>
-        <p>
-          60+ minute multi-cam podcast switching, high-tension trailer cold opens, documentary storytelling, and Sony S-Log3 & DJI D-Log M color grading in DaVinci Resolve.
-        </p>
-        <div class="tag-row">
-          <span class="tech-tag">Multi-Cam Sync</span>
-          <span class="tech-tag">S-Log3 / D-Log M</span>
-          <span class="tech-tag">Audio Mastering</span>
-        </div>
-      </div>
-
-      <div class="style-card">
-        <h4>AI Ads & AI Series</h4>
-        <p>
-          Audio-first AI production workflow: establishing precise shot timing with ElevenLabs voiceovers in the NLE before generating consistent visual scenes in Google Flow.
-        </p>
-        <div class="tag-row">
-          <span class="tech-tag">ElevenLabs</span>
-          <span class="tech-tag">Google Flow</span>
-          <span class="tech-tag">Premiere Pro & Resolve</span>
-        </div>
-      </div>
-    </div>
-
-    <div style="text-align: center; margin-top: 20px;">
-      <button class="action-btn primary" onclick="switchPage('work')">Back to Video Portfolio</button>
-    </div>
-
-  </section>
-
-  <!-- FOOTER -->
+  <!-- FOOTER / CONTACT -->
   <footer id="contact" class="footer">
     <h2>Ready to scale your content output?</h2>
-    <p>Reach out directly at <strong>king.bruk.nega@gmail.com</strong> or browse my full master archive.</p>
+    <p>Reach out directly to discuss your channel, brand, or upcoming campaign.</p>
     <div class="footer-actions">
-      <button id="copy-email-btn" class="action-btn primary" onclick="copyEmail(this)">Copy Email Address</button>
+      <button id="copy-email-btn" class="action-btn primary" data-email="bruknega@gmail.com">Copy Email Address</button>
       <a href="https://www.linkedin.com/in/bruk-nega-4987b6234" target="_blank" class="action-btn">LinkedIn Profile ↗</a>
-      <a href="https://drive.google.com/drive/folders/1RI4Izp_UzoerlZsl5EQ5eSeHfxTk-Kst" target="_blank" class="action-btn">Full Google Drive Folder ↗</a>
+      <a href="https://drive.google.com/drive/folders/1RI4Izp_UzoerlZsl5EQ5eSeHfxTk-Kst" target="_blank" class="action-btn">Google Drive Archive ↗</a>
     </div>
   </footer>
 
-  <!-- PAGE SWITCHER, HD THUMBNAIL CHECKER, INLINE VIDEO PLAYER & EXACT YOUTUBE/IG TITLE FETCHER -->
   <script>
-    function switchPage(page) {
-      stopAllActivePlayers();
-      var workPage = document.getElementById('work-page');
-      var aboutPage = document.getElementById('about-page');
-      var heroBanner = document.getElementById('hero-banner');
-      var navWork = document.getElementById('nav-work');
-      var navAbout = document.getElementById('nav-about');
+    function switchView(viewName) {
+      const workView = document.getElementById("view-work");
+      const aboutView = document.getElementById("view-about");
+      const navWork = document.getElementById("nav-work");
+      const navAbout = document.getElementById("nav-about");
 
-      if (page === 'about') {
-        workPage.classList.add('hidden-page');
-        heroBanner.classList.add('hidden-page');
-        aboutPage.classList.remove('hidden-page');
-        navWork.classList.remove('active-nav');
-        navAbout.classList.add('active-nav');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (viewName === "about") {
+        workView.classList.remove("active-view");
+        aboutView.classList.add("active-view");
+        navWork.classList.remove("active");
+        navAbout.classList.add("active");
       } else {
-        aboutPage.classList.add('hidden-page');
-        heroBanner.classList.remove('hidden-page');
-        workPage.classList.remove('hidden-page');
-        navAbout.classList.remove('active-nav');
-        navWork.classList.add('active-nav');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        aboutView.classList.remove("active-view");
+        workView.classList.add("active-view");
+        navAbout.classList.remove("active");
+        navWork.classList.add("active");
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function handleHashRouting() {
+      const hash = window.location.hash;
+      if (hash === "#about") {
+        switchView("about");
+      } else if (hash === "#work" || hash === "") {
+        switchView("work");
       }
     }
 
-    function checkThumb(img, id) {
-      if (img.naturalWidth === 120) {
-        if (img.src.indexOf('maxresdefault') !== -1) {
-          img.src = 'https://i.ytimg.com/vi/' + id + '/sddefault.jpg';
-          img.classList.add('hq-fallback');
-        } else if (img.src.indexOf('sddefault') !== -1) {
-          img.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
-          img.classList.add('hq-fallback');
-        }
-      }
-    }
-
-    function stopAllActivePlayers() {
-      var activeFrames = document.querySelectorAll('.thumb-box:not(.insta-embed-box) iframe');
-      for (var i = 0; i < activeFrames.length; i++) {
-        var box = activeFrames[i].parentElement;
-        var savedThumb = box.getAttribute('data-thumb');
-        var savedClass = box.getAttribute('data-thumb-class') || '';
-        box.innerHTML = (savedThumb ? '<img src="' + savedThumb + '" class="' + savedClass + '" alt="" />' : '') + '<div class="play-badge">&#9658;</div>';
-      }
-    }
-
-    // Plays every YouTube video and Short directly inside the card without leaving the website
-    function playInline(boxElement, videoId) {
-      if (boxElement.querySelector('iframe')) return;
-
-      stopAllActivePlayers();
-
-      var img = boxElement.querySelector('img');
-      if (img) {
-        boxElement.setAttribute('data-thumb', img.src);
-        boxElement.setAttribute('data-thumb-class', img.className);
-      }
-
-      boxElement.innerHTML =
-        '<iframe ' +
-        'src="https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1&playsinline=1" ' +
-        'title="YouTube video player" ' +
-        'frameborder="0" ' +
-        'referrerpolicy="strict-origin-when-cross-origin" ' +
-        'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
-        'allowfullscreen></iframe>';
-    }
+    window.addEventListener("hashchange", handleHashRouting);
+    handleHashRouting();
 
     function filterVideos(category, clickedBtn) {
-      stopAllActivePlayers();
+      const buttons = document.querySelectorAll(".filter-btn");
+      buttons.forEach(btn => btn.classList.remove("active"));
+      if (clickedBtn) clickedBtn.classList.add("active");
 
-      var buttons = document.querySelectorAll('.filter-btn');
-      for (var i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove('active');
-      }
-      clickedBtn.classList.add('active');
+      const cards = document.querySelectorAll(".video-card");
+      cards.forEach(card => {
+        const cardCat = card.getAttribute("data-cat");
+        const isFeatured = card.getAttribute("data-featured") === "true";
 
-      var cards = document.querySelectorAll('.video-card');
-      for (var j = 0; j < cards.length; j++) {
-        var cardCat = cards[j].getAttribute('data-cat');
-        cards[j].style.display = (category === 'all' || cardCat === category) ? 'flex' : 'none';
-      }
+        if (category === "all") {
+          card.style.display = "flex";
+        } else if (category === "featured") {
+          card.style.display = isFeatured ? "flex" : "none";
+        } else {
+          card.style.display = cardCat === category ? "flex" : "none";
+        }
+      });
     }
 
-    function copyEmail(btn) {
-      navigator.clipboard.writeText('king.bruk.nega@gmail.com');
-      btn.textContent = 'Copied: king.bruk.nega@gmail.com!';
-      setTimeout(function() { btn.textContent = 'Copy Email Address'; }, 2000);
+    // Default to Featured on load
+    filterVideos("featured", document.querySelector(".filter-btn.active"));
+
+    // Copy Email Button
+    const copyBtn = document.getElementById("copy-email-btn");
+    if (copyBtn) {
+      copyBtn.addEventListener("click", () => {
+        const email = copyBtn.getAttribute("data-email");
+        navigator.clipboard.writeText(email);
+        copyBtn.textContent = "Copied: bruknega@gmail.com";
+        setTimeout(() => {
+          copyBtn.textContent = "Copy Email Address";
+        }, 2000);
+      });
     }
-
-    // Automatically fetches the exact uploaded YouTube title for every AI Ad, DTC UGC, and YouTube video card
-    var ytCards = document.querySelectorAll('.video-card[data-yt-id]');
-    ytCards.forEach(function(card) {
-      var ytId = card.getAttribute('data-yt-id');
-      var titleEl = card.querySelector('.card-title');
-      if (!ytId || !titleEl) return;
-
-      fetch('https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' + ytId + '&format=json')
-        .then(function(res) { return res.json(); })
-        .then(function(data) {
-          if (data && data.title) {
-            titleEl.textContent = data.title.replace(/—/g, '-');
-          }
-        })
-        .catch(function() {
-          fetch('https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ytId)
-            .then(function(r) { return r.json(); })
-            .then(function(d) {
-              if (d && d.title) {
-                titleEl.textContent = d.title.replace(/—/g, '-');
-              }
-            })
-            .catch(function() {});
-        });
-    });
-
-    // Automatically fetches Instagram Reel titles if publicly available
-    var igShortcodes = ['C7c0m0qNorS', 'DIESLztstH7', 'DIdvwdOtHh9', 'DH-yv2eu8ai', 'DGLZ6ZDOsbW'];
-    igShortcodes.forEach(function(code) {
-      fetch('https://noembed.com/embed?url=https://www.instagram.com/reel/' + code + '/')
-        .then(function(res) { return res.json(); })
-        .then(function(data) {
-          if (data && data.title) {
-            var el = document.getElementById('ig-title-' + code);
-            if (el) el.textContent = data.title.replace(/—/g, '-').slice(0, 80);
-          }
-        })
-        .catch(function() {});
-    });
   </script>
 </body>
 </html>
