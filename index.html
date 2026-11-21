@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Bruk Nega | Senior Video Editor & AI Video Specialist</title>
   <style>
     :root {
-      --bg: #09090b;
-      --surface: #111114;
-      --surface-hover: #18181c;
-      --border: #232329;
-      --border-strong: #32323c;
-      --text: #f4f4f5;
-      --text-muted: #a1a1aa;
-      --accent: #e4e4e7;
-      --brand-blue: #3b82f6;
+      --bg: #0a0a0c;
+      --surface: #121216;
+      --surface-hover: #18181f;
+      --border: #23232c;
+      --border-strong: #343442;
+      --text: #f4f4f6;
+      --muted: #a1a1aa;
+      --dim: #71717a;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
       --green: #22c55e;
     }
 
@@ -31,34 +33,37 @@
     body {
       background-color: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* NAVBAR */
+    /* TOP NAVBAR */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(9, 9, 11, 0.92);
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 14px 24px;
     }
 
     .nav-container {
-      max-width: 1160px;
+      max-width: 1200px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 10px;
+      cursor: pointer;
       text-decoration: none;
       color: var(--text);
     }
@@ -79,7 +84,7 @@
     .availability {
       font-size: 0.76rem;
       color: #d4d4d8;
-      background: #18181c;
+      background: #18181f;
       border: 1px solid var(--border);
       padding: 3px 10px;
       border-radius: 999px;
@@ -89,67 +94,229 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
-    .nav-tab {
+    .nav-item {
       background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 7px 14px;
-      border-radius: 8px;
-      cursor: pointer;
+      color: #d4d4d8;
       text-decoration: none;
-      transition: color 0.15s ease, background 0.15s ease;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      font-family: inherit;
     }
 
-    .nav-tab:hover {
-      color: var(--text);
+    .nav-item:hover {
+      color: #ffffff;
       background: var(--surface-hover);
     }
 
-    .nav-tab.active {
-      color: var(--text);
-      background: #1f1f26;
-      font-weight: 600;
+    .nav-item.active-nav {
+      color: #ffffff;
+      background: var(--surface-hover);
+      border-color: var(--border-strong);
     }
 
+    /* CONTACT AS PRIMARY CTA */
     .nav-cta {
-      background: #ffffff;
-      color: #09090b;
-      font-weight: 600;
-      font-size: 0.88rem;
+      background: var(--accent);
+      color: #ffffff;
+      border: 1px solid var(--accent);
       padding: 8px 16px;
       border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
       text-decoration: none;
-      margin-left: 6px;
-      transition: opacity 0.15s ease;
+      cursor: pointer;
+      transition: background 0.18s ease;
+      font-family: inherit;
     }
 
-    .nav-cta:hover {
-      opacity: 0.88;
+    .nav-cta:hover,
+    .nav-cta.active-nav {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: #ffffff;
     }
 
-    /* VIEWS */
-    .view-section {
+    /* ================= ADMIN DASHBOARD PANEL ================= */
+    .admin-panel {
       display: none;
+      max-width: 1200px;
+      margin: 24px auto 0;
+      padding: 22px;
+      background: #121520;
+      border: 1px solid var(--accent);
+      border-radius: 14px;
     }
 
-    .view-section.active-view {
+    body.is-admin .admin-panel {
       display: block;
     }
 
-    .container {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 24px;
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
     }
 
-    /* WORK HERO */
+    .admin-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #93c5fd;
+    }
+
+    .admin-form {
+      display: grid;
+      grid-template-columns: 2fr 1.1fr 1fr 1.5fr auto;
+      gap: 10px;
+      align-items: end;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .admin-form {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .admin-field label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .admin-field input,
+    .admin-field select {
+      width: 100%;
+      background: var(--bg);
+      color: #fff;
+      border: 1px solid var(--border-strong);
+      padding: 9px 11px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      outline: none;
+    }
+
+    .admin-field input:focus,
+    .admin-field select:focus {
+      border-color: var(--accent);
+    }
+
+    .admin-btn {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.18s ease;
+    }
+
+    .admin-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .admin-btn.green {
+      background: #16a34a;
+    }
+
+    .admin-btn.green:hover {
+      background: #15803d;
+    }
+
+    .admin-btn.secondary {
+      background: #1d202b;
+      border: 1px solid var(--border-strong);
+    }
+
+    .admin-btn.secondary:hover {
+      border-color: var(--accent);
+    }
+
+    .admin-publish-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .gh-token-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .gh-token-box input {
+      flex: 1;
+      background: var(--bg);
+      color: #fff;
+      border: 1px solid var(--border-strong);
+      padding: 8px 11px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+    }
+
+    .card-admin-controls {
+      display: none;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 30;
+      gap: 5px;
+    }
+
+    body.is-admin .card-admin-controls {
+      display: flex;
+    }
+
+    .card-ctrl-btn {
+      background: rgba(10, 10, 14, 0.92);
+      color: #fff;
+      border: 1px solid var(--border-strong);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .card-ctrl-btn.featured-on {
+      background: #ca8a04;
+      border-color: #eab308;
+    }
+
+    .card-ctrl-btn.delete {
+      background: rgba(220, 38, 38, 0.92);
+      border-color: #ef4444;
+    }
+
+    /* ================= HERO SECTION ================= */
     .hero {
-      max-width: 780px;
-      margin: 56px auto 40px;
+      max-width: 820px;
+      margin: 44px auto 28px;
       padding: 0 24px;
       text-align: center;
     }
@@ -157,128 +324,197 @@
     .hero-profile {
       display: inline-flex;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
       margin-bottom: 18px;
       text-align: left;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .profile-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 14px;
+      width: 96px;
+      height: 96px;
+      border-radius: 16px;
       object-fit: cover;
       border: 1px solid var(--border-strong);
-      background: var(--surface);
+      background: #1a1a22;
       flex-shrink: 0;
     }
 
     .hero-identity h1 {
-      font-size: 2rem;
+      font-size: 2.15rem;
       font-weight: 800;
-      letter-spacing: -0.025em;
       line-height: 1.15;
+      letter-spacing: -0.025em;
     }
 
     .hero-subtitle {
-      color: var(--text-muted);
+      color: #93c5fd;
       font-weight: 500;
-      font-size: 0.98rem;
+      font-size: 1rem;
+      margin-top: 3px;
     }
 
     .hero-bio {
-      color: #d4d4d8;
-      max-width: 650px;
-      margin: 0 auto 28px;
-      font-size: 1rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 22px;
+      font-size: 0.98rem;
       text-wrap: balance;
     }
 
-    /* STRICT 4-COLUMN STAT GRID (NEVER 3+1) */
-    .stats-grid {
+    /* BALANCED 3-ITEM POSITIONING BAR (NO 3+1 ORPHAN) */
+    .stats-bar {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      max-width: 820px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      max-width: 680px;
       margin: 0 auto;
     }
 
-    .stat-card {
+    @media (max-width: 640px) {
+      .stats-bar {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stat-pill {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 12px;
-      text-align: center;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.84rem;
+      color: #e4e4e7;
     }
 
-    .stat-value {
-      display: block;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.01em;
+    /* DEDICATED CATEGORY PAGE HEADER */
+    .category-banner {
+      max-width: 1200px;
+      margin: 36px auto 24px;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
-    .stat-label {
-      display: block;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 2px;
+    .category-banner-text h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
     }
 
-    /* FILTER BAR */
-    .portfolio-section {
-      max-width: 1160px;
-      margin: 0 auto 84px;
+    .category-banner-text p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 640px;
+    }
+
+    .category-banner-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .subtle-btn {
+      background: var(--surface);
+      color: #e4e4e7;
+      border: 1px solid var(--border-strong);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+
+    .subtle-btn:hover {
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    /* PAGE SECTIONS */
+    .portfolio-section,
+    .about-section,
+    .contact-section {
+      max-width: 1200px;
+      margin: 0 auto 76px;
       padding: 0 24px;
     }
 
+    .hidden-page {
+      display: none !important;
+    }
+
+    /* CATEGORY FILTER BAR (DIRECT ROUTE LINKS) */
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 8px;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       padding: 10px;
       background: var(--surface);
       border-radius: 12px;
       border: 1px solid var(--border);
+      position: sticky;
+      top: 64px;
+      z-index: 90;
     }
 
     .filter-btn {
       background: transparent;
-      color: var(--text-muted);
+      color: var(--muted);
       border: 1px solid transparent;
       padding: 8px 16px;
       border-radius: 8px;
       font-size: 0.88rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.15s ease;
+      text-decoration: none;
+      transition: all 0.18s ease;
     }
 
     .filter-btn:hover {
-      color: var(--text);
+      color: #ffffff;
       background: var(--surface-hover);
     }
 
     .filter-btn.active {
-      background: #ffffff;
-      color: #09090b;
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
     }
 
-    /* VIDEO GRID */
+    /* GRID & VIDEO CARDS */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 980px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .video-card {
+      position: relative;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
-      text-decoration: none;
       color: inherit;
       display: flex;
       flex-direction: column;
@@ -290,69 +526,123 @@
       border-color: var(--border-strong);
     }
 
+    .video-card.highlight-flash {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+    }
+
     .thumb-box {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: #16161b;
-      overflow: hidden;
-    }
-
-    .thumb-box.ig-thumb {
-      background: linear-gradient(135deg, #16161d 0%, #1f1f2b 100%);
+      background: #14141b;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      cursor: pointer;
     }
 
-    .ig-label {
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #d4d4d8;
-      border: 1px solid var(--border-strong);
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(9, 9, 11, 0.65);
+    .thumb-box.vertical {
+      aspect-ratio: 9 / 14;
     }
 
     .thumb-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
+      position: absolute;
+      inset: 0;
+      image-rendering: -webkit-optimize-contrast;
     }
 
-    /* BOTTOM-RIGHT PLAY BADGE (NEVER COVERS THUMBNAIL TEXT) */
+    .thumb-box.vertical img.hq-fallback {
+      transform: scale(1.35);
+    }
+
+    .thumb-box iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      background: #000;
+    }
+
+    .thumb-box.insta-embed-box iframe {
+      top: -54px;
+      height: calc(100% + 148px);
+    }
+
+    /* UNIFORM DARK-MODE INSTAGRAM COVER (NO JARRING WHITE IFRAME ON LOAD) */
+    .ig-dark-cover {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(155deg, #171722 0%, #0d0d13 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .ig-badge-icon {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #93c5fd;
+      border: 1px solid #2b3348;
+      background: rgba(59, 130, 246, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .ig-cover-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f4f4f6;
+      max-width: 220px;
+      line-height: 1.35;
+    }
+
+    .ig-cover-hint {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* SUBTLE BOTTOM-RIGHT PLAY BADGE (DOES NOT OBSCURE THUMBNAIL TEXT) */
     .play-badge {
       position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 38px;
-      height: 38px;
-      background: rgba(9, 9, 11, 0.78);
+      right: 12px;
+      bottom: 12px;
+      z-index: 3;
+      width: 40px;
+      height: 40px;
+      background: rgba(10, 10, 14, 0.78);
+      backdrop-filter: blur(6px);
       border: 1px solid rgba(255, 255, 255, 0.22);
       color: #ffffff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.85rem;
-      transition: background 0.15s ease, transform 0.15s ease;
+      font-size: 0.9rem;
+      padding-left: 2px;
+      transition: all 0.18s ease;
     }
 
-    .video-card:hover .play-badge {
-      background: #ffffff;
-      color: #09090b;
+    .thumb-box:hover .play-badge {
+      background: var(--accent);
+      border-color: var(--accent);
       transform: scale(1.06);
     }
 
     .card-body {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
+      padding: 15px 16px 17px;
     }
 
     .card-meta {
@@ -364,105 +654,159 @@
     }
 
     .card-badge {
-      font-size: 0.73rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      color: #d4d4d8;
-      background: #1c1c22;
-      border: 1px solid var(--border);
-      padding: 3px 9px;
-      border-radius: 6px;
+      color: #93c5fd;
+      background: rgba(59, 130, 246, 0.12);
+      padding: 3px 8px;
+      border-radius: 5px;
       white-space: nowrap;
     }
 
     .card-metric {
-      font-size: 0.76rem;
-      color: var(--green);
+      font-size: 0.74rem;
+      color: #4ade80;
       font-weight: 600;
       white-space: nowrap;
     }
 
     .card-title {
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       font-weight: 700;
       margin-bottom: 6px;
-      color: var(--text);
+      color: #ffffff;
       line-height: 1.35;
     }
 
     .card-desc {
-      font-size: 0.84rem;
-      color: var(--text-muted);
+      font-size: 0.81rem;
+      color: var(--muted);
+      line-height: 1.45;
     }
 
-    /* ABOUT ME VIEW */
-    .about-wrapper {
-      max-width: 920px;
-      margin: 56px auto 84px;
-      padding: 0 24px;
+    /* ================= ABOUT ME PAGE (STREAMLINED, NO BLOAT, BALANCED GRIDS) ================= */
+    .about-section {
+      margin-top: 40px;
     }
 
-    .about-hero {
-      display: flex;
-      align-items: flex-start;
-      gap: 24px;
+    .about-hero-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 28px;
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
       margin-bottom: 24px;
+      flex-wrap: wrap;
     }
 
     .about-avatar {
-      width: 84px;
-      height: 84px;
+      width: 120px;
+      height: 120px;
       border-radius: 16px;
       object-fit: cover;
       border: 1px solid var(--border-strong);
       flex-shrink: 0;
     }
 
-    .about-hero h2 {
-      font-size: 1.55rem;
+    .about-intro {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .about-intro h2 {
+      font-size: 1.75rem;
       font-weight: 800;
+      margin-bottom: 10px;
+      color: #ffffff;
       letter-spacing: -0.02em;
       line-height: 1.25;
-      margin-bottom: 10px;
     }
 
-    .about-hero p {
+    .about-intro p {
       color: #d4d4d8;
       font-size: 0.96rem;
+      max-width: 720px;
     }
 
-    .about-stats {
+    /* STRICT 4x1 ON DESKTOP, 2x2 ON TABLET/MOBILE (NEVER 3+1) */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
       margin-bottom: 36px;
-      max-width: 100%;
     }
 
-    .section-heading {
-      font-size: 1.15rem;
+    @media (max-width: 860px) {
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .metric-number {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 5px;
+    }
+
+    .metric-label {
+      font-size: 0.86rem;
       font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text);
+      color: #93c5fd;
+      margin-bottom: 4px;
     }
 
-    /* STRICT 2x2 NOTABLE CLIENTS GRID */
+    .metric-sub {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .about-subheading {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    /* STRICT 2x2 GRID FOR 4 NAMED CLIENTS (FIXED HEADER WRAPPING + CLICKABLE VIDEO LINKS) */
     .clients-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 18px;
       margin-bottom: 32px;
+    }
+
+    @media (max-width: 760px) {
+      .clients-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .client-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
+      border-radius: 12px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 12px;
+      transition: border-color 0.18s ease;
+    }
+
+    .client-card:hover {
+      border-color: var(--border-strong);
     }
 
     .client-header {
@@ -470,815 +814,978 @@
       justify-content: space-between;
       align-items: center;
       gap: 12px;
+      margin-bottom: 6px;
     }
 
     .client-name {
       font-size: 1.05rem;
       font-weight: 700;
-      color: var(--text);
+      color: #ffffff;
+    }
+
+    .client-views {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #4ade80;
+      background: rgba(34, 197, 94, 0.12);
+      padding: 3px 9px;
+      border-radius: 999px;
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .client-role {
-      font-size: 0.74rem;
-      color: #d4d4d8;
-      background: #1c1c22;
-      border: 1px solid var(--border);
-      padding: 3px 9px;
-      border-radius: 6px;
-      white-space: nowrap;
+      font-size: 0.82rem;
+      color: #93c5fd;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
 
     .client-desc {
-      font-size: 0.87rem;
-      color: var(--text-muted);
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 14px;
     }
 
     .client-links {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 4px;
     }
 
-    .credit-link {
-      font-size: 0.8rem;
+    .video-jump-link {
+      font-size: 0.78rem;
       font-weight: 600;
-      color: #60a5fa;
-      text-decoration: none;
-      background: rgba(59, 130, 246, 0.1);
-      border: 1px solid rgba(59, 130, 246, 0.25);
-      padding: 4px 10px;
+      color: #e4e4e7;
+      background: #1a1a22;
+      border: 1px solid var(--border-strong);
+      padding: 5px 10px;
       border-radius: 6px;
-      transition: background 0.15s ease;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.18s ease;
     }
 
-    .credit-link:hover {
-      background: rgba(59, 130, 246, 0.2);
+    .video-jump-link:hover {
+      border-color: var(--accent);
+      color: #ffffff;
+      background: rgba(59, 130, 246, 0.15);
     }
 
-    /* COMPACT CORE STACK STRIP */
+    /* COMPACT 1-LINE CORE STACK STRIP (REPLACES REPETITIVE 4-CARD SECTION) */
     .stack-strip {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 16px 20px;
+      padding: 18px 22px;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
       margin-bottom: 32px;
     }
 
     .stack-label {
       font-size: 0.82rem;
       font-weight: 700;
-      color: var(--text);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-right: 6px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
     }
 
-    .stack-item {
-      font-size: 0.84rem;
-      color: #d4d4d8;
-      background: #1a1a20;
-      border: 1px solid var(--border);
-      padding: 4px 12px;
-      border-radius: 999px;
-    }
-
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
+    .stack-items {
+      display: flex;
+      flex-wrap: wrap;
       gap: 8px;
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border-strong);
-      padding: 10px 18px;
-      border-radius: 10px;
-      font-size: 0.9rem;
+    }
+
+    .tech-tag {
+      font-size: 0.8rem;
       font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
+      color: #e4e4e7;
+      background: #1a1a22;
+      border: 1px solid var(--border-strong);
+      padding: 5px 12px;
+      border-radius: 6px;
     }
 
-    .back-btn:hover {
-      background: var(--surface-hover);
+    /* ================= DEDICATED CONTACT PAGE ================= */
+    .contact-section {
+      margin-top: 56px;
     }
 
-    /* FOOTER */
-    .footer {
+    .contact-card {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 44px 32px;
       text-align: center;
-      padding: 64px 24px;
-      border-top: 1px solid var(--border);
     }
 
-    .footer h2 {
-      font-size: 1.45rem;
-      font-weight: 700;
+    .contact-card h2 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
     }
 
-    .footer p {
-      color: var(--text-muted);
-      margin: 8px 0 24px;
-      font-size: 0.95rem;
+    .contact-card p {
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 28px;
+      font-size: 0.96rem;
     }
 
-    .footer-actions {
+    .contact-actions {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .contact-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-links-row a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: color 0.18s ease;
+    }
+
+    .contact-links-row a:hover {
+      color: #ffffff;
     }
 
     .action-btn {
-      background: var(--surface);
-      color: var(--text);
+      background: #181820;
+      color: #fff;
       border: 1px solid var(--border-strong);
       padding: 11px 20px;
-      border-radius: 10px;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
       cursor: pointer;
       font-size: 0.9rem;
-      transition: background 0.15s ease;
+      transition: all 0.18s ease;
     }
 
     .action-btn:hover {
-      background: var(--surface-hover);
+      border-color: var(--accent);
+      background: rgba(59, 130, 246, 0.14);
     }
 
     .action-btn.primary {
-      background: #ffffff;
-      color: #09090b;
-      border-color: #ffffff;
+      background: var(--accent);
+      border-color: var(--accent);
     }
 
     .action-btn.primary:hover {
-      opacity: 0.9;
+      background: var(--accent-hover);
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .availability {
-        display: none;
-      }
+    /* COMPACT FOOTER */
+    .footer {
+      text-align: center;
+      padding: 36px 24px 44px;
+      border-top: 1px solid var(--border);
+      color: var(--dim);
+      font-size: 0.84rem;
+    }
 
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
 
-      .clients-grid {
-        grid-template-columns: 1fr;
-      }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-      .about-hero {
-        flex-direction: column;
-      }
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    .admin-trigger {
+      margin-top: 10px;
+      font-size: 0.74rem;
+      color: #3f3f4e;
+      cursor: pointer;
+      user-select: none;
+      display: inline-block;
+    }
+
+    .admin-trigger:hover {
+      color: #93c5fd;
     }
   </style>
 </head>
 <body>
-  <!-- TOP NAVBAR -->
+
+  <!-- NAVBAR: WORK | ABOUT ME | CONTACT (PRIMARY CTA) -->
   <header class="navbar">
     <div class="nav-container">
-      <a href="#work" class="brand" onclick="switchView('work')">
+      <a href="#featured" class="brand">
         <span class="status-dot"></span>
         <span class="brand-name">Bruk Nega</span>
         <span class="availability">Available for Projects</span>
       </a>
       <nav class="nav-links">
-        <a href="#work" id="nav-work" class="nav-tab active" onclick="switchView('work')">Work</a>
-        <a href="#about" id="nav-about" class="nav-tab" onclick="switchView('about')">About Me</a>
+        <a href="#featured" id="nav-work" class="nav-item active-nav">Work</a>
+        <a href="#about" id="nav-about" class="nav-item">About Me</a>
         <a href="#contact" id="nav-contact" class="nav-cta">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- ================= WORK VIEW ================= -->
-  <main id="view-work" class="view-section active-view">
-    <section class="hero">
-      <div class="hero-profile">
-        <img src="profile.jpg" alt="Bruk Nega" class="profile-avatar" onerror="this.style.display='none'" />
-        <div class="hero-identity">
-          <h1>Bruk Nega</h1>
-          <p class="hero-subtitle">Senior Video Editor &amp; AI Video Specialist</p>
-        </div>
+  <!-- ================= ADMIN ROLE DASHBOARD ================= -->
+  <section id="admin-panel" class="admin-panel">
+    <div class="admin-header">
+      <div class="admin-title">Admin Portfolio Manager (Logged In as Bruk)</div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="admin-btn secondary" onclick="copyCurrentCategoryUrl(this)">Copy Current Page Link</button>
+        <button class="admin-btn secondary" onclick="resetToDefaultVideos()">Reset Default List</button>
+        <button class="admin-btn secondary" onclick="logoutAdmin()">Exit Admin Mode</button>
       </div>
-      <p class="hero-bio">
-        High-retention short-form reels, DTC UGC ads, multi-cam podcasts, and audio-first AI commercials crafted in Premiere Pro, DaVinci Resolve, ElevenLabs, and Google Flow.
-      </p>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <span class="stat-value">6.2M+</span>
-          <span class="stat-label">Verified Views</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">Team of 5</span>
-          <span class="stat-label">Editors Led</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">15+ / Wk</span>
-          <span class="stat-label">Short-Form Output</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">4+ / Wk</span>
-          <span class="stat-label">Long-Form Output</span>
-        </div>
+    </div>
+
+    <div class="admin-form">
+      <div class="admin-field">
+        <label>YouTube / Shorts / IG Reel URL</label>
+        <input type="text" id="admin-url" placeholder="https://www.youtube.com/watch?v=... or /shorts/... or IG Reel" />
       </div>
-    </section>
-
-    <section class="portfolio-section">
-      <div class="filter-bar">
-        <button class="filter-btn active" onclick="filterVideos('featured', this)">Featured</button>
-        <button class="filter-btn" onclick="filterVideos('vlogs', this)">Vlogs / Podcasts</button>
-        <button class="filter-btn" onclick="filterVideos('shorts', this)">Shorts / Reels</button>
-        <button class="filter-btn" onclick="filterVideos('ugc', this)">DTC UGC Videos</button>
-        <button class="filter-btn" onclick="filterVideos('ai', this)">AI Ads &amp; AI Series</button>
-        <button class="filter-btn" onclick="filterVideos('all', this)">All Works</button>
+      <div class="admin-field">
+        <label>Category Page</label>
+        <select id="admin-cat">
+          <option value="vlogs">Vlogs / Podcasts (#vlogs)</option>
+          <option value="shorts">Shorts / Reels (#shorts)</option>
+          <option value="ugc">DTC UGC Videos (#ugc)</option>
+          <option value="ai">AI Ads & AI Series (#ai)</option>
+        </select>
       </div>
-
-      <div id="portfolio-grid" class="portfolio-grid">
-        <!-- VLOGS / PODCASTS -->
-        <a href="https://youtu.be/TlJFaAvQqZY" target="_blank" class="video-card" data-cat="vlogs" data-featured="true">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/TlJFaAvQqZY/mqdefault.jpg" loading="lazy" alt="Builder Brigade 10 Horrible Home Features" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Vlogs / Podcasts</span>
-              <span class="card-metric">1.9M+ Views</span>
-            </div>
-            <h3 class="card-title">Builder Brigade — 10 Horrible Home Features</h3>
-            <p class="card-desc">Builder Brigade • Lead Editor • Listicle pacing, visual callouts, and audio mix.</p>
-          </div>
-        </a>
-
-        <a href="https://youtu.be/GlxMoZMyhrs" target="_blank" class="video-card" data-cat="vlogs" data-featured="true">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/GlxMoZMyhrs/mqdefault.jpg" loading="lazy" alt="Davie Fogarty 1 Year to Make 10M" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Vlogs / Podcasts</span>
-              <span class="card-metric">1.5M+ Views</span>
-            </div>
-            <h3 class="card-title">Davie Fogarty — If I Had 1 Year to Make $10M</h3>
-            <p class="card-desc">Davie Fogarty • Video Editor • Narrative pacing, B-roll layering, and motion graphics.</p>
-          </div>
-        </a>
-
-        <a href="https://youtu.be/Edr2LTIaNFQ" target="_blank" class="video-card" data-cat="vlogs" data-featured="true">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/Edr2LTIaNFQ/mqdefault.jpg" loading="lazy" alt="Davie Fogarty Failing Donut Shop" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Vlogs / Podcasts</span>
-              <span class="card-metric">1.1M+ Views</span>
-            </div>
-            <h3 class="card-title">Davie Fogarty — Can I Save This Failing Donut Shop?</h3>
-            <p class="card-desc">Davie Fogarty • Video Editor • Documentary turnaround story, color grade, and sound design.</p>
-          </div>
-        </a>
-
-        <a href="https://youtu.be/O0iTti8z1C4" target="_blank" class="video-card" data-cat="vlogs" data-featured="true">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/O0iTti8z1C4/mqdefault.jpg" loading="lazy" alt="Builder Brigade 10 Most Hated Home Trends" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Vlogs / Podcasts</span>
-              <span class="card-metric">818K+ Views</span>
-            </div>
-            <h3 class="card-title">Builder Brigade — 10 Most Hated Home Trends</h3>
-            <p class="card-desc">Builder Brigade • Lead Editor • Fast educational pacing and visual overlays.</p>
-          </div>
-        </a>
-
-        <a href="https://youtu.be/SVkNsw8FR8g" target="_blank" class="video-card" data-cat="vlogs" data-featured="true">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/SVkNsw8FR8g/mqdefault.jpg" loading="lazy" alt="Kanessa Muluneh 10M in 48 Hours" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Vlogs / Podcasts</span>
-              <span class="card-metric">309K+ Views</span>
-            </div>
-            <h3 class="card-title">Kanessa Muluneh — She Made $10M in 48 Hours</h3>
-            <p class="card-desc">Gulf Standard Time • Full Edit • 68-minute multi-cam podcast cut and cold-open trailer.</p>
-          </div>
-        </a>
-
-        <a href="https://youtu.be/IRYfA1WjY0k" target="_blank" class="video-card" data-cat="vlogs">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/IRYfA1WjY0k/mqdefault.jpg" loading="lazy" alt="Davie Fogarty Comfrt 500M" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Vlogs / Podcasts</span>
-              <span class="card-metric">202K+ Views</span>
-            </div>
-            <h3 class="card-title">Davie Fogarty — How Comfrt Made $500M in 3 Years</h3>
-            <p class="card-desc">Davie Fogarty • Video Editor • 45-minute multi-cam founder interview and retention hook.</p>
-          </div>
-        </a>
-
-        <a href="https://youtu.be/Tft587jhybg" target="_blank" class="video-card" data-cat="vlogs">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/Tft587jhybg/mqdefault.jpg" loading="lazy" alt="Davie Fogarty 100M a Year" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Vlogs / Podcasts</span>
-              <span class="card-metric">141K+ Views</span>
-            </div>
-            <h3 class="card-title">Davie Fogarty — How I Make $100M a Year</h3>
-            <p class="card-desc">Davie Fogarty • Video Editor • Documentary breakdown, custom graphics, and audio mix.</p>
-          </div>
-        </a>
-
-        <a href="https://youtu.be/b82ibVe1rDA" target="_blank" class="video-card" data-cat="vlogs">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/b82ibVe1rDA/mqdefault.jpg" loading="lazy" alt="Davie Fogarty Bali Villas" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Vlogs / Podcasts</span>
-              <span class="card-metric">122K+ Views</span>
-            </div>
-            <h3 class="card-title">Davie Fogarty — $10M Selling Villas in Bali</h3>
-            <p class="card-desc">Davie Fogarty • Video Editor • On-location vlog edit and S-Log3 / D-Log M color grading.</p>
-          </div>
-        </a>
-
-        <a href="https://youtu.be/zHxjbNV8gDU" target="_blank" class="video-card" data-cat="vlogs">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/zHxjbNV8gDU/mqdefault.jpg" loading="lazy" alt="Gulf Standard Time Podcast" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Vlogs / Podcasts</span>
-              <span class="card-metric">73-Min Podcast</span>
-            </div>
-            <h3 class="card-title">Gulf Standard Time — Business Acquisition Expert</h3>
-            <p class="card-desc">Gulf Standard Time • Full Edit • Multi-cam studio switching and broadcast audio mix.</p>
-          </div>
-        </a>
-
-        <!-- SHORTS / REELS -->
-        <a href="https://youtube.com/shorts/-vmx37VooDs" target="_blank" class="video-card" data-cat="shorts" data-featured="true">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/-vmx37VooDs/mqdefault.jpg" loading="lazy" alt="Top 5 Trending Apps Breakdown" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Shorts / Reels</span>
-              <span class="card-metric">5.2K+ Views</span>
-            </div>
-            <h3 class="card-title">Top 5 Trending Apps Breakdown</h3>
-            <p class="card-desc">ActDaVerse • Short-Form Editor • App logo motion graphics, transitions, and SFX.</p>
-          </div>
-        </a>
-
-        <a href="https://youtube.com/shorts/yTps291c3xg" target="_blank" class="video-card" data-cat="shorts">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/yTps291c3xg/mqdefault.jpg" loading="lazy" alt="Five Apps to Download" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Shorts / Reels</span>
-              <span class="card-metric">YouTube Short</span>
-            </div>
-            <h3 class="card-title">TikTok Ban: Five Apps to Download Instead</h3>
-            <p class="card-desc">ActDaVerse • Short-Form Editor • Kinetic typography, icon animations, and tight pacing.</p>
-          </div>
-        </a>
-
-        <a href="https://youtube.com/shorts/lEBxtAYBjJ8" target="_blank" class="video-card" data-cat="shorts">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/lEBxtAYBjJ8/mqdefault.jpg" loading="lazy" alt="She Buys Companies" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Shorts / Reels</span>
-              <span class="card-metric">Podcast Clip</span>
-            </div>
-            <h3 class="card-title">She Doesn't Save Money. She Buys Companies.</h3>
-            <p class="card-desc">Gulf Standard Time • Short-Form Editor • Podcast hook extraction and custom captions.</p>
-          </div>
-        </a>
-
-        <a href="https://youtube.com/shorts/zW1ZyJMqwnQ" target="_blank" class="video-card" data-cat="shorts">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/zW1ZyJMqwnQ/mqdefault.jpg" loading="lazy" alt="Dubai Investments" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Shorts / Reels</span>
-              <span class="card-metric">Podcast Clip</span>
-            </div>
-            <h3 class="card-title">The #1 Way to Choose Investments in Dubai</h3>
-            <p class="card-desc">Gulf Standard Time • Short-Form Editor • B-roll overlays and highlighted subtitles.</p>
-          </div>
-        </a>
-
-        <a href="https://www.instagram.com/reel/C7c0m0qNorS/" target="_blank" class="video-card" data-cat="shorts">
-          <div class="thumb-box ig-thumb">
-            <span class="ig-label">Instagram Reel</span>
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Shorts / Reels</span>
-              <span class="card-metric">Instagram</span>
-            </div>
-            <h3 class="card-title">Creator Retention Reel — Motion &amp; Captions</h3>
-            <p class="card-desc">Client Reel • Full Edit • Custom motion graphics, dynamic captions, and sound design.</p>
-          </div>
-        </a>
-
-        <a href="https://www.instagram.com/reel/DIESLztstH7/" target="_blank" class="video-card" data-cat="shorts">
-          <div class="thumb-box ig-thumb">
-            <span class="ig-label">Instagram Reel</span>
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Shorts / Reels</span>
-              <span class="card-metric">Instagram</span>
-            </div>
-            <h3 class="card-title">Founder Talking-Head Reel — Fast Pacing</h3>
-            <p class="card-desc">Client Reel • Full Edit • Visual hook optimization, B-roll layering, and audio polish.</p>
-          </div>
-        </a>
-
-        <a href="https://www.instagram.com/reel/DIdvwdOtHh9/" target="_blank" class="video-card" data-cat="shorts">
-          <div class="thumb-box ig-thumb">
-            <span class="ig-label">Instagram Reel</span>
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Shorts / Reels</span>
-              <span class="card-metric">Instagram</span>
-            </div>
-            <h3 class="card-title">Short-Form Storytelling Reel</h3>
-            <p class="card-desc">Client Reel • Full Edit • Beat-synced cuts, B-roll integration, and retention pacing.</p>
-          </div>
-        </a>
-
-        <a href="https://www.instagram.com/reel/DH-yv2eu8ai/" target="_blank" class="video-card" data-cat="shorts">
-          <div class="thumb-box ig-thumb">
-            <span class="ig-label">Instagram Reel</span>
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">Shorts / Reels</span>
-              <span class="card-metric">Instagram</span>
-            </div>
-            <h3 class="card-title">Brand &amp; Creator Growth Reel</h3>
-            <p class="card-desc">Client Reel • Full Edit • Kinetic typography, clean color grading, and SFX.</p>
-          </div>
-        </a>
-
-        <!-- DTC UGC VIDEOS -->
-        <a href="https://youtube.com/shorts/lICBrk4w3EI" target="_blank" class="video-card" data-cat="ugc" data-featured="true">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/lICBrk4w3EI/mqdefault.jpg" loading="lazy" alt="DTC Product Hook Creative" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">DTC UGC Videos</span>
-              <span class="card-metric">Direct Response</span>
-            </div>
-            <h3 class="card-title">Direct-Response Product Hook Creative</h3>
-            <p class="card-desc">DTC Brand • Performance Editor • 3-second visual hook, problem/solution cut, and CTA.</p>
-          </div>
-        </a>
-
-        <a href="https://youtube.com/shorts/W7oGIGxS_7I" target="_blank" class="video-card" data-cat="ugc">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/W7oGIGxS_7I/mqdefault.jpg" loading="lazy" alt="Brand UGC Testimonial Ad" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">DTC UGC Videos</span>
-              <span class="card-metric">ROAS Focused</span>
-            </div>
-            <h3 class="card-title">Health &amp; Wellness UGC Testimonial Ad</h3>
-            <p class="card-desc">DTC Brand • Performance Editor • Testimonial pacing, product callouts, and audio mix.</p>
-          </div>
-        </a>
-
-        <a href="https://youtube.com/shorts/zmCJUdmPaG0" target="_blank" class="video-card" data-cat="ugc">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/zmCJUdmPaG0/mqdefault.jpg" loading="lazy" alt="DTC Performance Ad" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">DTC UGC Videos</span>
-              <span class="card-metric">UGC Ad</span>
-            </div>
-            <h3 class="card-title">DTC Product Demonstration Ad</h3>
-            <p class="card-desc">DTC Brand • Performance Editor • Fast visual demo, benefit captions, and retention edit.</p>
-          </div>
-        </a>
-
-        <a href="https://youtube.com/shorts/v-xICfQpPeA" target="_blank" class="video-card" data-cat="ugc">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/v-xICfQpPeA/mqdefault.jpg" loading="lazy" alt="E-Commerce UGC Spot" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">DTC UGC Videos</span>
-              <span class="card-metric">DTC Creative</span>
-            </div>
-            <h3 class="card-title">E-Commerce UGC Product Showcase</h3>
-            <p class="card-desc">DTC Brand • Performance Editor • Clean product showcase and conversion-focused pacing.</p>
-          </div>
-        </a>
-
-        <!-- AI ADS & AI SERIES -->
-        <a href="https://youtube.com/shorts/9kiUTUDokck" target="_blank" class="video-card" data-cat="ai" data-featured="true">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/9kiUTUDokck/mqdefault.jpg" loading="lazy" alt="Audio-First AI Commercial" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">AI Ads &amp; AI Series</span>
-              <span class="card-metric">AI Commercial</span>
-            </div>
-            <h3 class="card-title">Audio-First AI Brand Commercial</h3>
-            <p class="card-desc">AI Production • Director &amp; Editor • ElevenLabs voiceover synced with Google Flow visuals.</p>
-          </div>
-        </a>
-
-        <a href="https://youtube.com/shorts/OMX2eo4GOGw" target="_blank" class="video-card" data-cat="ai">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/OMX2eo4GOGw/mqdefault.jpg" loading="lazy" alt="Cinematic AI Product Ad" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">AI Ads &amp; AI Series</span>
-              <span class="card-metric">AI Ad Spot</span>
-            </div>
-            <h3 class="card-title">Cinematic AI Product Advertisement</h3>
-            <p class="card-desc">AI Production • Director &amp; Editor • Consistent AI scenes, captions, and custom SFX.</p>
-          </div>
-        </a>
-
-        <a href="https://youtube.com/shorts/0IgTCu7fE7g" target="_blank" class="video-card" data-cat="ai">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/0IgTCu7fE7g/mqdefault.jpg" loading="lazy" alt="AI Series Part 1" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">AI Ads &amp; AI Series</span>
-              <span class="card-metric">AI Series</span>
-            </div>
-            <h3 class="card-title">AI Visual Storytelling — Episode 1</h3>
-            <p class="card-desc">AI Series • End-to-End Production • Audio-first narrative pacing and NLE compositing.</p>
-          </div>
-        </a>
-
-        <a href="https://youtube.com/shorts/rG17h-FQcho" target="_blank" class="video-card" data-cat="ai">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/rG17h-FQcho/mqdefault.jpg" loading="lazy" alt="AI Series Part 2" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">AI Ads &amp; AI Series</span>
-              <span class="card-metric">AI Series</span>
-            </div>
-            <h3 class="card-title">AI Visual Storytelling — Episode 2</h3>
-            <p class="card-desc">AI Series • End-to-End Production • Visual hook, color grading, and atmospheric SFX.</p>
-          </div>
-        </a>
-
-        <a href="https://youtube.com/shorts/f_PEeLSSxiM" target="_blank" class="video-card" data-cat="ai">
-          <div class="thumb-box">
-            <img src="https://i.ytimg.com/vi/f_PEeLSSxiM/mqdefault.jpg" loading="lazy" alt="AI Direct Response Ad" />
-            <div class="play-badge">&#9658;</div>
-          </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-badge">AI Ads &amp; AI Series</span>
-              <span class="card-metric">AI UGC / Ad</span>
-            </div>
-            <h3 class="card-title">AI Direct-Response Ad Creative</h3>
-            <p class="card-desc">AI Production • Director &amp; Editor • AI visual storytelling paired with conversion pacing.</p>
-          </div>
-        </a>
+      <div class="admin-field">
+        <label>Metric / Client Tag</label>
+        <input type="text" id="admin-metric" placeholder="e.g. 500K+ Views" />
       </div>
-    </section>
-  </main>
-
-  <!-- ================= ABOUT ME VIEW ================= -->
-  <section id="view-about" class="view-section">
-    <div class="about-wrapper">
-      <div class="about-hero">
-        <img src="profile.jpg" alt="Bruk Nega" class="about-avatar" onerror="this.style.display='none'" />
-        <div>
-          <h2>I lead post-production for high-growth creators and DTC brands.</h2>
-          <p>
-            I'm Bruk Nega, a Senior Video Editor and AI Video Specialist with a B.Sc. in Mechanical Design. I combine engineering-grade workflow discipline with retention-focused storytelling—leading a team of 5 editors to deliver consistent long-form and short-form output at scale.
-          </p>
-        </div>
+      <div class="admin-field">
+        <label>Role & Deliverable</label>
+        <input type="text" id="admin-desc" placeholder="Lead Editor: Pacing, motion callouts, and audio mix." />
       </div>
+      <button class="admin-btn" onclick="adminAddVideo()">+ Insert Video</button>
+    </div>
 
-      <div class="stats-grid about-stats">
-        <div class="stat-card">
-          <span class="stat-value">6.2M+</span>
-          <span class="stat-label">Verified Views</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">Team of 5</span>
-          <span class="stat-label">Editors Managed</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">15+ / Wk</span>
-          <span class="stat-label">Short-Form Deliveries</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">4+ / Wk</span>
-          <span class="stat-label">Long-Form Deliveries</span>
-        </div>
+    <div class="admin-publish-bar">
+      <div class="gh-token-box">
+        <input type="password" id="gh-token" placeholder="Optional: GitHub Personal Access Token for 1-Click Publish to bruknega.com" />
       </div>
-
-      <h3 class="section-heading">Notable Clients &amp; Verified Credits</h3>
-      <div class="clients-grid">
-        <div class="client-card">
-          <div>
-            <div class="client-header">
-              <span class="client-name">Davie Fogarty</span>
-              <span class="client-role">Vlogs &amp; Docs</span>
-            </div>
-            <p class="client-desc">Edited long-form business documentaries, founder interviews, and on-location vlogs.</p>
-          </div>
-          <div class="client-links">
-            <a href="https://youtu.be/GlxMoZMyhrs" target="_blank" class="credit-link">1.5M+ Views ↗</a>
-            <a href="https://youtu.be/Edr2LTIaNFQ" target="_blank" class="credit-link">1.1M+ Views ↗</a>
-          </div>
-        </div>
-
-        <div class="client-card">
-          <div>
-            <div class="client-header">
-              <span class="client-name">Builder Brigade</span>
-              <span class="client-role">Lead Editor</span>
-            </div>
-            <p class="client-desc">High-retention listicle pacing, visual callouts, and commentary cuts for mass-appeal home builds.</p>
-          </div>
-          <div class="client-links">
-            <a href="https://youtu.be/TlJFaAvQqZY" target="_blank" class="credit-link">1.9M+ Views ↗</a>
-            <a href="https://youtu.be/O0iTti8z1C4" target="_blank" class="credit-link">818K+ Views ↗</a>
-          </div>
-        </div>
-
-        <div class="client-card">
-          <div>
-            <div class="client-header">
-              <span class="client-name">Kanessa Muluneh</span>
-              <span class="client-role">Podcast &amp; Shorts</span>
-            </div>
-            <p class="client-desc">Multi-cam studio podcast editing, trailer cold opens, and short-form social distribution.</p>
-          </div>
-          <div class="client-links">
-            <a href="https://youtu.be/SVkNsw8FR8g" target="_blank" class="credit-link">309K+ Views ↗</a>
-          </div>
-        </div>
-
-        <div class="client-card">
-          <div>
-            <div class="client-header">
-              <span class="client-name">Gulf Standard Time</span>
-              <span class="client-role">Multi-Cam Podcast</span>
-            </div>
-            <p class="client-desc">70+ minute studio podcast episodes, broadcast audio mastering, and viral vertical clips.</p>
-          </div>
-          <div class="client-links">
-            <a href="https://youtu.be/zHxjbNV8gDU" target="_blank" class="credit-link">Full Episode ↗</a>
-            <a href="https://youtube.com/shorts/lEBxtAYBjJ8" target="_blank" class="credit-link">Short Clip ↗</a>
-          </div>
-        </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="admin-btn secondary" onclick="copyFullUpdatedHTML(this)">Copy Updated index.html</button>
+        <button class="admin-btn green" onclick="publishToGitHub(this)">Publish Live to bruknega.com</button>
       </div>
-
-      <div class="stack-strip">
-        <span class="stack-label">Core Stack</span>
-        <span class="stack-item">Premiere Pro</span>
-        <span class="stack-item">DaVinci Resolve (S-Log3 / D-Log M)</span>
-        <span class="stack-item">After Effects &amp; Mocha AE</span>
-        <span class="stack-item">ElevenLabs</span>
-        <span class="stack-item">Google Flow</span>
-      </div>
-
-      <a href="#work" class="back-btn" onclick="switchView('work')">← Back to Video Portfolio</a>
     </div>
   </section>
 
-  <!-- FOOTER / CONTACT -->
-  <footer id="contact" class="footer">
-    <h2>Ready to scale your content output?</h2>
-    <p>Reach out directly to discuss your channel, brand, or upcoming campaign.</p>
-    <div class="footer-actions">
-      <button id="copy-email-btn" class="action-btn primary" data-email="bruknega@gmail.com">Copy Email Address</button>
-      <a href="https://www.linkedin.com/in/bruk-nega-4987b6234" target="_blank" class="action-btn">LinkedIn Profile ↗</a>
-      <a href="https://drive.google.com/drive/folders/1RI4Izp_UzoerlZsl5EQ5eSeHfxTk-Kst" target="_blank" class="action-btn">Google Drive Archive ↗</a>
+  <!-- ================= MAIN HERO (SHOWN ON FEATURED VIEW) ================= -->
+  <section id="hero-banner" class="hero">
+    <div class="hero-profile">
+      <img
+        src="profile.jpg"
+        alt="Bruk Nega"
+        class="profile-avatar"
+        onerror="if(!this.dataset.t){this.dataset.t=1;this.src='profile.png';}else if(this.dataset.t==1){this.dataset.t=2;this.src='profile.jpeg';}else if(this.dataset.t==2){this.dataset.t=3;this.src='profile.jpg.jpg';}else if(this.dataset.t==3){this.dataset.t=4;this.src='profile.jpg.png';}else{this.src='https://ui-avatars.com/api/?name=Bruk+Nega&background=1e1e26&color=fff&size=200';}"
+      />
+      <div class="hero-identity">
+        <h1>Bruk Nega</h1>
+        <p class="hero-subtitle">Senior Video Editor & AI Video Specialist</p>
+      </div>
+    </div>
+
+    <p class="hero-bio">
+      Post-production lead for high-growth YouTube channels, multi-cam podcasts, DTC brands, and audio-first AI commercials.
+    </p>
+
+    <div class="stats-bar">
+      <div class="stat-pill"><strong>6.2M+</strong> Verified Views</div>
+      <div class="stat-pill"><strong>Senior Lead</strong> (Team of 5)</div>
+      <div class="stat-pill"><strong>Premiere Pro</strong> & DaVinci Resolve</div>
+    </div>
+  </section>
+
+  <!-- ================= DEDICATED CATEGORY PAGE HEADER (SHOWN ON #vlogs, #shorts, #ugc, #ai) ================= -->
+  <section id="category-banner" class="category-banner hidden-page">
+    <div class="category-banner-text">
+      <h1 id="category-heading">Vlogs & Podcasts</h1>
+      <p id="category-subtext">Long-form documentary storytelling, multi-cam studio podcasts, and S-Log3 color grading.</p>
+    </div>
+    <div class="category-banner-actions">
+      <a href="#featured" class="subtle-btn">All Featured Work</a>
+      <a href="#contact" class="nav-cta">Book a Project</a>
+    </div>
+  </section>
+
+  <!-- ================= WORK PORTFOLIO GRID ================= -->
+  <section id="work-page" class="portfolio-section">
+    <div class="filter-bar">
+      <a href="#featured" class="filter-btn active" data-route="featured">Featured</a>
+      <a href="#vlogs" class="filter-btn" data-route="vlogs">Vlogs / Podcasts</a>
+      <a href="#shorts" class="filter-btn" data-route="shorts">Shorts / Reels</a>
+      <a href="#ugc" class="filter-btn" data-route="ugc">DTC UGC Videos</a>
+      <a href="#ai" class="filter-btn" data-route="ai">AI Ads & AI Series</a>
+    </div>
+
+    <div id="portfolio-grid" class="portfolio-grid"></div>
+  </section>
+
+  <!-- ================= ABOUT ME PAGE (#about) ================= -->
+  <section id="about-page" class="about-section hidden-page">
+    <div class="about-hero-card">
+      <img
+        src="profile.jpg"
+        alt="Bruk Nega"
+        class="about-avatar"
+        onerror="if(!this.dataset.t){this.dataset.t=1;this.src='profile.png';}else if(this.dataset.t==1){this.dataset.t=2;this.src='profile.jpeg';}else if(this.dataset.t==2){this.dataset.t=3;this.src='profile.jpg.jpg';}else if(this.dataset.t==3){this.dataset.t=4;this.src='profile.jpg.png';}else{this.src='https://ui-avatars.com/api/?name=Bruk+Nega&background=1e1e26&color=fff&size=200';}"
+      />
+      <div class="about-intro">
+        <h2>I lead post-production for high-growth creators and DTC brands.</h2>
+        <p>
+          With a B.Sc. in Mechanical Design and agency leadership experience overseeing a team of 5 editors, I approach video editing as an engineering problem built around retention, pacing, and measurable conversion. From flagship YouTube documentaries and 60-minute multi-cam podcasts to direct-response UGC and audio-first AI commercials, every cut is structured to hold attention from the first frame.
+        </p>
+      </div>
+    </div>
+
+    <!-- STRICT 4x1 METRICS GRID -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-number">6.2M+</div>
+        <div class="metric-label">Portfolio Views</div>
+        <div class="metric-sub">Verified across featured YouTube cuts</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">Team of 5</div>
+        <div class="metric-label">Agency Leadership</div>
+        <div class="metric-sub">Led and QA-checked 5 video editors</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">15+ / Wk</div>
+        <div class="metric-label">Short-Form Output</div>
+        <div class="metric-sub">Reels, Shorts, UGC, and AI ad creatives</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">4+ / Wk</div>
+        <div class="metric-label">Long-Form Delivery</div>
+        <div class="metric-sub">Vlogs, documentaries, and studio podcasts</div>
+      </div>
+    </div>
+
+    <!-- STRICT 2x2 NAMED CLIENTS GRID WITH DIRECT VIDEO LINKS -->
+    <h3 class="about-subheading">Selected Client Credits</h3>
+    <div class="clients-grid">
+      <div class="client-card">
+        <div>
+          <div class="client-header">
+            <span class="client-name">Davie Fogarty</span>
+            <span class="client-views">3.1M+ Views</span>
+          </div>
+          <div class="client-role">Long-Form Documentaries, Vlogs & Founder Podcasts</div>
+          <p class="client-desc">
+            Lead editor on flagship entrepreneurship documentaries, turnaround vlogs, and multi-cam founder interviews with custom motion graphics and S-Log3 color grading.
+          </p>
+        </div>
+        <div class="client-links">
+          <button class="video-jump-link" onclick="jumpToVideo('GlxMoZMyhrs', 'vlogs')">Watch $10M Plan (1.5M) ↗</button>
+          <button class="video-jump-link" onclick="jumpToVideo('Edr2LTIaNFQ', 'vlogs')">Watch Donut Shop (1.1M) ↗</button>
+          <button class="video-jump-link" onclick="jumpToVideo('IRYfA1WjY0k', 'vlogs')">Watch Comfrt (202K) ↗</button>
+        </div>
+      </div>
+
+      <div class="client-card">
+        <div>
+          <div class="client-header">
+            <span class="client-name">Builder Brigade</span>
+            <span class="client-views">2.7M+ Views</span>
+          </div>
+          <div class="client-role">High-Retention YouTube Commentary & Reels</div>
+          <p class="client-desc">
+            Structured fast-paced educational breakdowns with custom visual callouts, B-roll layering, and retention pacing across both long-form YouTube and Instagram Reels.
+          </p>
+        </div>
+        <div class="client-links">
+          <button class="video-jump-link" onclick="jumpToVideo('TlJFaAvQqZY', 'vlogs')">Watch 10 Horrible Features (1.9M) ↗</button>
+          <button class="video-jump-link" onclick="jumpToVideo('O0iTti8z1C4', 'vlogs')">Watch 10 Hated Trends (818K) ↗</button>
+        </div>
+      </div>
+
+      <div class="client-card">
+        <div>
+          <div class="client-header">
+            <span class="client-name">Kanessa Muluneh & GST Podcast</span>
+            <span class="client-views">315K+ Views</span>
+          </div>
+          <div class="client-role">Full Multi-Cam Studio Podcasts & Vertical Clips</div>
+          <p class="client-desc">
+            Edited full 68 to 73 minute studio episodes with high-tension trailer cold opens, broadcast audio mastering, and repurposed 9:16 social clips.
+          </p>
+        </div>
+        <div class="client-links">
+          <button class="video-jump-link" onclick="jumpToVideo('SVkNsw8FR8g', 'vlogs')">Watch $10M in 48 Hours (309K) ↗</button>
+          <button class="video-jump-link" onclick="jumpToVideo('zHxjbNV8gDU', 'vlogs')">Watch M&A Podcast ↗</button>
+        </div>
+      </div>
+
+      <div class="client-card">
+        <div>
+          <div class="client-header">
+            <span class="client-name">Daniel Truklja & ActDaVerse</span>
+            <span class="client-views">Short-Form Growth</span>
+          </div>
+          <div class="client-role">Kinetic Typography Shorts & Retention Reels</div>
+          <p class="client-desc">
+            Produced rapid-cut social Reels and creator Shorts featuring custom icon motion graphics, glowing transitions, and punchy sound design.
+          </p>
+        </div>
+        <div class="client-links">
+          <button class="video-jump-link" onclick="jumpToVideo('yTps291c3xg', 'shorts')">Watch TikTok Countdown ↗</button>
+          <button class="video-jump-link" onclick="jumpToVideo('-vmx37VooDs', 'shorts')">Watch Top 5 Apps ↗</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SINGLE CORE STACK STRIP -->
+    <div class="stack-strip">
+      <span class="stack-label">Core Stack</span>
+      <div class="stack-items">
+        <span class="tech-tag">Adobe Premiere Pro</span>
+        <span class="tech-tag">DaVinci Resolve (S-Log3 / D-Log M)</span>
+        <span class="tech-tag">After Effects</span>
+        <span class="tech-tag">ElevenLabs</span>
+        <span class="tech-tag">Google Flow</span>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <a href="#featured" class="action-btn primary">Explore Featured Work</a>
+    </div>
+  </section>
+
+  <!-- ================= DEDICATED CONTACT PAGE (#contact) ================= -->
+  <section id="contact-page" class="contact-section hidden-page">
+    <div class="contact-card">
+      <h2>Ready to scale your content output?</h2>
+      <p>
+        Available for ongoing retainer partnerships, channel post-production leadership, and high-converting UGC or AI ad batches.
+      </p>
+      <div class="contact-actions">
+        <button id="copy-email-btn" class="action-btn primary" onclick="copyEmail(this)">Copy Email: king.bruk.nega@gmail.com</button>
+        <a href="mailto:king.bruk.nega@gmail.com" class="action-btn">Open Email App</a>
+      </div>
+      <div class="contact-links-row">
+        <a href="https://www.linkedin.com/in/bruk-nega-4987b6234" target="_blank">LinkedIn Profile ↗</a>
+        <a href="https://drive.google.com/drive/folders/1RI4Izp_UzoerlZsl5EQ5eSeHfxTk-Kst" target="_blank">Full Google Drive Archive ↗</a>
+        <a href="#featured">Back to Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPACT FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#featured">Featured</a>
+      <a href="#vlogs">Vlogs / Podcasts</a>
+      <a href="#shorts">Shorts / Reels</a>
+      <a href="#ugc">DTC UGC</a>
+      <a href="#ai">AI Ads & Series</a>
+      <a href="#about">About Me</a>
+      <a href="#contact">Contact</a>
+      <a href="https://drive.google.com/drive/folders/1RI4Izp_UzoerlZsl5EQ5eSeHfxTk-Kst" target="_blank">Google Drive Archive ↗</a>
+    </div>
+    <p>Bruk Nega · Senior Video Editor & AI Video Specialist · king.bruk.nega@gmail.com</p>
+    <div>
+      <span class="admin-trigger" onclick="promptAdminLogin()">Admin Login</span>
     </div>
   </footer>
 
+  <!-- PORTFOLIO ROUTER, DATA ENGINE & ADMIN MANAGER -->
   <script>
-    function switchView(viewName) {
-      const workView = document.getElementById("view-work");
-      const aboutView = document.getElementById("view-about");
-      const navWork = document.getElementById("nav-work");
-      const navAbout = document.getElementById("nav-about");
+    var ADMIN_PASS = 'bruk2026';
+    var currentRoute = 'featured';
 
-      if (viewName === "about") {
-        workView.classList.remove("active-view");
-        aboutView.classList.add("active-view");
-        navWork.classList.remove("active");
-        navAbout.classList.add("active");
+    var categoryMeta = {
+      vlogs: {
+        title: 'Vlogs & Podcasts',
+        sub: 'Long-form documentary storytelling, multi-cam studio podcasts, and S-Log3 / D-Log M color grading.'
+      },
+      shorts: {
+        title: 'Shorts & Reels',
+        sub: 'High-retention vertical edits, kinetic typography, podcast hook clips, and beat-synced social Reels.'
+      },
+      ugc: {
+        title: 'DTC UGC Videos',
+        sub: 'Direct-response e-commerce creatives engineered around 3-second visual hooks and conversion pacing.'
+      },
+      ai: {
+        title: 'AI Ads & AI Series',
+        sub: 'Audio-first generative AI commercials and serialized storytelling built with ElevenLabs and Google Flow.'
+      }
+    };
+
+    /*__VIDEO_DATA_START__*/
+    var defaultVideos = [
+      { id: 'TlJFaAvQqZY', platform: 'yt', cat: 'vlogs', featured: true, metric: '1.9M+ Views', title: '10 Horrible Home Features', desc: 'Builder Brigade · Lead Editor: Pacing, visual callouts, and audio mix.' },
+      { id: 'GlxMoZMyhrs', platform: 'yt', cat: 'vlogs', featured: true, metric: '1.5M+ Views', title: 'If I Had 1 Year to Make $10M: This Is My Plan', desc: 'Davie Fogarty · Lead Editor: Narrative arc, B-roll pacing, and motion graphics.' },
+      { id: 'Edr2LTIaNFQ', platform: 'yt', cat: 'vlogs', featured: true, metric: '1.1M+ Views', title: 'Can I Save This Failing Donut Shop?', desc: 'Davie Fogarty · Lead Editor: Documentary turnaround cut and color grade.' },
+      { id: 'O0iTti8z1C4', platform: 'yt', cat: 'vlogs', featured: true, metric: '818K+ Views', title: 'The 10 Most Hated Home Trends', desc: 'Builder Brigade · Lead Editor: Educational listicle pacing and visual overlays.' },
+      { id: 'SVkNsw8FR8g', platform: 'yt', cat: 'vlogs', featured: true, metric: '309K+ Views', title: 'She Made $10M in 48 Hours and Walked Away', desc: 'Kanessa Muluneh · Full 68-min multi-cam podcast cut, trailer hook, and audio mix.' },
+      { id: 'IRYfA1WjY0k', platform: 'yt', cat: 'vlogs', featured: false, metric: '202K+ Views', title: 'How Comfrt Made $500M in 3 Years', desc: 'Davie Fogarty · 45-min founder interview, multi-angle sync, and retention cold open.' },
+      { id: 'Tft587jhybg', platform: 'yt', cat: 'vlogs', featured: false, metric: '141K+ Views', title: 'How I Make $100M a Year (After 12 Failed Businesses)', desc: 'Davie Fogarty · Documentary breakdown with custom charts, B-roll, and sound design.' },
+      { id: 'b82ibVe1rDA', platform: 'yt', cat: 'vlogs', featured: false, metric: '122K+ Views', title: 'This 32-Year-Old Makes $10M Selling Villas in Bali', desc: 'Davie Fogarty · On-location tour vlog with S-Log3 / D-Log M color grading.' },
+      { id: 'zHxjbNV8gDU', platform: 'yt', cat: 'vlogs', featured: false, metric: '73-Min Podcast', title: 'Business Acquisition Expert: Buy in 90 Days', desc: 'Gulf Standard Time · Multi-cam studio edit, trailer intro, and broadcast audio mix.' },
+
+      { id: 'yTps291c3xg', platform: 'yt', cat: 'shorts', featured: true, metric: 'ActDaVerse', title: 'TikTok Countdown: 89 Days Until Potential Ban', desc: 'Short-Form Editor: Kinetic typography, custom icon animations, and SFX layering.' },
+      { id: '-vmx37VooDs', platform: 'yt', cat: 'shorts', featured: false, metric: '5.2K+ Views', title: 'TikTok Is Officially Banned: Five Apps to Download', desc: 'ActDaVerse · App logo motion graphics, glowing transitions, and tight hook cuts.' },
+      { id: 'lEBxtAYBjJ8', platform: 'yt', cat: 'shorts', featured: false, metric: 'GST Podcast', title: "She Doesn't Save Money. She Buys Companies.", desc: 'Gulf Standard Time · High-impact podcast hook clip with custom captions and mastering.' },
+      { id: 'zW1ZyJMqwnQ', platform: 'yt', cat: 'shorts', featured: false, metric: 'Podcast Reel', title: 'The Number One Way to Choose Investments in Dubai', desc: 'Podcast Clip · Luxury B-roll overlays, highlighted subtitles, and tight pacing.' },
+
+      { id: 'C7c0m0qNorS', platform: 'ig', cat: 'shorts', featured: false, metric: 'Instagram Reel', title: 'Builder Brigade: Structural Beam & Framing Breakdown', desc: 'Instagram Reel · Custom motion callouts, dynamic captions, and sound design.' },
+      { id: 'DIESLztstH7', platform: 'ig', cat: 'shorts', featured: false, metric: 'Instagram Reel', title: 'Creator Retention Reel: Fast-Cut Storytelling', desc: 'Instagram Reel · Rapid visual hooks, clean typography, and audio polish.' },
+      { id: 'DIdvwdOtHh9', platform: 'ig', cat: 'shorts', featured: false, metric: 'Instagram Reel', title: 'Founder Storytelling & B-Roll Cut', desc: 'Instagram Reel · Short-form narrative structure and B-roll integration.' },
+      { id: 'DH-yv2eu8ai', platform: 'ig', cat: 'shorts', featured: false, metric: 'Instagram Reel', title: 'Kinetic Typography & Beat-Synced Reel', desc: 'Instagram Reel · Beat-synced transitions, kinetic text, and color polish.' },
+      { id: 'DGLZ6ZDOsbW', platform: 'ig', cat: 'shorts', featured: false, metric: 'Instagram Reel', title: 'Social Growth & 3-Second Hook Reel', desc: 'Instagram Reel · Scroll-stopping opening hook and subtitle styling.' },
+
+      { id: 'lICBrk4w3EI', platform: 'yt', cat: 'ugc', featured: true, metric: 'DTC Hook', title: 'Direct-Response DTC Product Creative', desc: 'UGC Editor: 3-second visual hook, problem-solution pacing, and CTA overlay.' },
+      { id: 'W7oGIGxS_7I', platform: 'yt', cat: 'ugc', featured: false, metric: 'ROAS Ad', title: 'High-Converting Brand UGC Testimonial', desc: 'UGC Editor: Testimonial pacing, product benefit callouts, and audio mix.' },
+      { id: 'zmCJUdmPaG0', platform: 'yt', cat: 'ugc', featured: false, metric: 'UGC Ad', title: 'DTC Performance Product Demonstration', desc: 'UGC Editor: Visual demo cuts, dynamic captions, and retention pacing.' },
+      { id: 'v-xICfQpPeA', platform: 'yt', cat: 'ugc', featured: false, metric: 'DTC Spot', title: 'E-Commerce UGC Product Showcase', desc: 'UGC Editor: Clean product showcase, benefit overlays, and punchy audio.' },
+
+      { id: '9kiUTUDokck', platform: 'yt', cat: 'ai', featured: true, metric: 'AI Commercial', title: 'Audio-First AI Brand Commercial', desc: 'AI Video Specialist: ElevenLabs voiceover timing with Google Flow visuals and SFX.' },
+      { id: 'OMX2eo4GOGw', platform: 'yt', cat: 'ai', featured: false, metric: 'AI Ad Spot', title: 'Cinematic AI Product Advertisement', desc: 'AI Video Specialist: Consistent subject generation, captions, and sound layering.' },
+      { id: '0IgTCu7fE7g', platform: 'yt', cat: 'ai', featured: false, metric: 'AI Series', title: 'Bananito Is a Billionaire: Part 1', desc: 'AI Series Creator: Audio-first narrative pacing and custom scene compositing.' },
+      { id: 'rG17h-FQcho', platform: 'yt', cat: 'ai', featured: false, metric: 'AI Series', title: 'Bananito Is a Billionaire: Part 2', desc: 'AI Series Creator: Consistent character visuals, color grade, and sound design.' },
+      { id: 'f_PEeLSSxiM', platform: 'yt', cat: 'ai', featured: false, metric: 'AI Series', title: 'Bananito Is a Billionaire: Part 3', desc: 'AI Series Creator: High-retention visual transitions and ElevenLabs voice sync.' },
+      { id: '275p2LpWT7A', platform: 'yt', cat: 'ai', featured: false, metric: 'AI Series', title: 'Bananito Is a Billionaire: Part 4', desc: 'AI Series Creator: Precision shot timing and layered atmospheric SFX.' },
+      { id: 'YsZqS4nKVhU', platform: 'yt', cat: 'ai', featured: false, metric: 'AI Ad', title: 'AI Health Explainer: Daily Alcohol Impact', desc: 'AI Video Specialist: End-to-end visual generation, kinetic captions, and mastering.' },
+      { id: 'hHDkUquumb8', platform: 'yt', cat: 'ai', featured: false, metric: 'AI Ad', title: 'AI Health Explainer: Controlling Cholesterol', desc: 'AI Video Specialist: Seamless AI scene transitions and conversion-focused pacing.' }
+    ];
+    /*__VIDEO_DATA_END__*/
+
+    var videos = [];
+    try {
+      var saved = localStorage.getItem('bruk_portfolio_videos_v2');
+      videos = saved ? JSON.parse(saved) : defaultVideos.slice();
+    } catch (e) {
+      videos = defaultVideos.slice();
+    }
+
+    var catLabels = {
+      vlogs: 'Vlogs / Podcasts',
+      shorts: 'Shorts / Reels',
+      ugc: 'DTC UGC Videos',
+      ai: 'AI Ads & AI Series'
+    };
+
+    function saveVideosState() {
+      try {
+        localStorage.setItem('bruk_portfolio_videos_v2', JSON.stringify(videos));
+      } catch (e) {}
+    }
+
+    // HASH ROUTER FOR DEDICATED PAGES (#featured, #vlogs, #shorts, #ugc, #ai, #about, #contact)
+    function handleRoute() {
+      stopAllActivePlayers();
+      var rawHash = (window.location.hash || '#featured').replace('#', '').toLowerCase();
+      var validRoutes = ['featured', 'vlogs', 'shorts', 'ugc', 'ai', 'about', 'contact'];
+      currentRoute = validRoutes.indexOf(rawHash) !== -1 ? rawHash : 'featured';
+
+      var heroBanner = document.getElementById('hero-banner');
+      var categoryBanner = document.getElementById('category-banner');
+      var workPage = document.getElementById('work-page');
+      var aboutPage = document.getElementById('about-page');
+      var contactPage = document.getElementById('contact-page');
+
+      var navWork = document.getElementById('nav-work');
+      var navAbout = document.getElementById('nav-about');
+      var navContact = document.getElementById('nav-contact');
+
+      navWork.classList.remove('active-nav');
+      navAbout.classList.remove('active-nav');
+      navContact.classList.remove('active-nav');
+
+      heroBanner.classList.add('hidden-page');
+      categoryBanner.classList.add('hidden-page');
+      workPage.classList.add('hidden-page');
+      aboutPage.classList.add('hidden-page');
+      contactPage.classList.add('hidden-page');
+
+      if (currentRoute === 'about') {
+        aboutPage.classList.remove('hidden-page');
+        navAbout.classList.add('active-nav');
+        document.title = 'About Me | Bruk Nega';
+      } else if (currentRoute === 'contact') {
+        contactPage.classList.remove('hidden-page');
+        navContact.classList.add('active-nav');
+        document.title = 'Contact | Bruk Nega';
       } else {
-        aboutView.classList.remove("active-view");
-        workView.classList.add("active-view");
-        navAbout.classList.remove("active");
-        navWork.classList.add("active");
-      }
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+        workPage.classList.remove('hidden-page');
+        navWork.classList.add('active-nav');
 
-    function handleHashRouting() {
-      const hash = window.location.hash;
-      if (hash === "#about") {
-        switchView("about");
-      } else if (hash === "#work" || hash === "") {
-        switchView("work");
-      }
-    }
-
-    window.addEventListener("hashchange", handleHashRouting);
-    handleHashRouting();
-
-    function filterVideos(category, clickedBtn) {
-      const buttons = document.querySelectorAll(".filter-btn");
-      buttons.forEach(btn => btn.classList.remove("active"));
-      if (clickedBtn) clickedBtn.classList.add("active");
-
-      const cards = document.querySelectorAll(".video-card");
-      cards.forEach(card => {
-        const cardCat = card.getAttribute("data-cat");
-        const isFeatured = card.getAttribute("data-featured") === "true";
-
-        if (category === "all") {
-          card.style.display = "flex";
-        } else if (category === "featured") {
-          card.style.display = isFeatured ? "flex" : "none";
+        if (currentRoute === 'featured') {
+          heroBanner.classList.remove('hidden-page');
+          document.title = 'Bruk Nega | Senior Video Editor & AI Video Specialist';
         } else {
-          card.style.display = cardCat === category ? "flex" : "none";
+          categoryBanner.classList.remove('hidden-page');
+          var meta = categoryMeta[currentRoute];
+          document.getElementById('category-heading').textContent = meta.title;
+          document.getElementById('category-subtext').textContent = meta.sub;
+          document.title = meta.title + ' | Bruk Nega';
         }
+
+        // Update filter bar active state
+        var filterBtns = document.querySelectorAll('.filter-btn');
+        for (var i = 0; i < filterBtns.length; i++) {
+          var r = filterBtns[i].getAttribute('data-route');
+          filterBtns[i].classList.toggle('active', r === currentRoute);
+        }
+
+        renderPortfolio();
+      }
+
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    window.addEventListener('hashchange', handleRoute);
+
+    // JUMP FROM ABOUT ME CLIENT CREDIT DIRECTLY TO THE SPECIFIC VIDEO
+    function jumpToVideo(videoId, category) {
+      window.location.hash = '#' + category;
+      setTimeout(function() {
+        var targetCard = document.getElementById('card-' + videoId);
+        if (targetCard) {
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetCard.classList.add('highlight-flash');
+          setTimeout(function() { targetCard.classList.remove('highlight-flash'); }, 2200);
+        }
+      }, 80);
+    }
+
+    function renderPortfolio() {
+      var grid = document.getElementById('portfolio-grid');
+      grid.innerHTML = '';
+
+      videos.forEach(function(item, index) {
+        if (currentRoute === 'featured') {
+          if (!item.featured) return;
+        } else if (item.cat !== currentRoute) {
+          return;
+        }
+
+        var isVertical = item.cat !== 'vlogs';
+        var card = document.createElement('div');
+        card.className = 'video-card';
+        card.id = 'card-' + item.id;
+        card.setAttribute('data-cat', item.cat);
+
+        var adminBtns =
+          '<div class="card-admin-controls">' +
+            '<button class="card-ctrl-btn' + (item.featured ? ' featured-on' : '') + '" title="Toggle Featured" onclick="toggleFeatured(' + index + ')">★</button>' +
+            '<button class="card-ctrl-btn" title="Move Left" onclick="moveVideo(' + index + ', -1)">←</button>' +
+            '<button class="card-ctrl-btn" title="Move Right" onclick="moveVideo(' + index + ', 1)">→</button>' +
+            '<button class="card-ctrl-btn delete" title="Remove Video" onclick="removeVideo(' + index + ')">✕</button>' +
+          '</div>';
+
+        var thumbHTML = '';
+        if (item.platform === 'ig') {
+          thumbHTML =
+            '<div class="thumb-box vertical" onclick="playInstagramInline(this, \'' + item.id + '\')">' +
+              '<div class="ig-dark-cover">' +
+                '<span class="ig-badge-icon">Instagram Reel</span>' +
+                '<div class="ig-cover-title">' + item.title + '</div>' +
+                '<span class="ig-cover-hint">Click to play inline</span>' +
+              '</div>' +
+              '<div class="play-badge">&#9658;</div>' +
+            '</div>';
+        } else {
+          thumbHTML =
+            '<div class="thumb-box' + (isVertical ? ' vertical' : '') + '" onclick="playInline(this, \'' + item.id + '\')">' +
+              '<img src="https://i.ytimg.com/vi/' + item.id + '/maxresdefault.jpg" onload="checkThumb(this, \'' + item.id + '\')" loading="lazy" alt="' + item.title.replace(/"/g, '&quot;') + '" />' +
+              '<div class="play-badge">&#9658;</div>' +
+            '</div>';
+        }
+
+        card.innerHTML =
+          adminBtns +
+          thumbHTML +
+          '<div class="card-body">' +
+            '<div class="card-meta">' +
+              '<span class="card-badge">' + (catLabels[item.cat] || 'Portfolio') + '</span>' +
+              '<span class="card-metric">' + (item.metric || 'Featured') + '</span>' +
+            '</div>' +
+            '<h3 class="card-title" id="title-' + item.id + '">' + item.title + '</h3>' +
+            '<p class="card-desc">' + item.desc + '</p>' +
+          '</div>';
+
+        grid.appendChild(card);
       });
     }
 
-    // Default to Featured on load
-    filterVideos("featured", document.querySelector(".filter-btn.active"));
+    function checkThumb(img, id) {
+      if (img.naturalWidth === 120) {
+        if (img.src.indexOf('maxresdefault') !== -1) {
+          img.src = 'https://i.ytimg.com/vi/' + id + '/sddefault.jpg';
+          img.classList.add('hq-fallback');
+        } else if (img.src.indexOf('sddefault') !== -1) {
+          img.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+          img.classList.add('hq-fallback');
+        }
+      }
+    }
 
-    // Copy Email Button
-    const copyBtn = document.getElementById("copy-email-btn");
-    if (copyBtn) {
-      copyBtn.addEventListener("click", () => {
-        const email = copyBtn.getAttribute("data-email");
-        navigator.clipboard.writeText(email);
-        copyBtn.textContent = "Copied: bruknega@gmail.com";
-        setTimeout(() => {
-          copyBtn.textContent = "Copy Email Address";
-        }, 2000);
+    function stopAllActivePlayers() {
+      var activeFrames = document.querySelectorAll('.thumb-box iframe');
+      for (var i = 0; i < activeFrames.length; i++) {
+        var box = activeFrames[i].parentElement;
+        var savedHTML = box.getAttribute('data-orig-html');
+        box.classList.remove('insta-embed-box');
+        if (savedHTML) box.innerHTML = savedHTML;
+      }
+    }
+
+    function playInline(boxElement, videoId) {
+      if (boxElement.querySelector('iframe')) return;
+      stopAllActivePlayers();
+      boxElement.setAttribute('data-orig-html', boxElement.innerHTML);
+
+      boxElement.innerHTML =
+        '<iframe ' +
+        'src="https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1&playsinline=1" ' +
+        'title="YouTube video player" ' +
+        'frameborder="0" ' +
+        'referrerpolicy="strict-origin-when-cross-origin" ' +
+        'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+        'allowfullscreen></iframe>';
+    }
+
+    function playInstagramInline(boxElement, shortcode) {
+      if (boxElement.querySelector('iframe')) return;
+      stopAllActivePlayers();
+      boxElement.setAttribute('data-orig-html', boxElement.innerHTML);
+      boxElement.classList.add('insta-embed-box');
+
+      boxElement.innerHTML =
+        '<iframe src="https://www.instagram.com/reel/' + shortcode + '/embed/" ' +
+        'frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+    }
+
+    // ADMIN FUNCTIONS
+    function parseVideoUrl(url) {
+      url = url.trim();
+      var igMatch = url.match(/instagram\.com\/(?:reel|p)\/([A-Za-z0-9_-]+)/i);
+      if (igMatch) return { platform: 'ig', id: igMatch[1] };
+
+      var ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
+      if (ytMatch) return { platform: 'yt', id: ytMatch[1] };
+
+      if (/^[A-Za-z0-9_-]{11}$/.test(url)) return { platform: 'yt', id: url };
+      return null;
+    }
+
+    function adminAddVideo() {
+      var urlInput = document.getElementById('admin-url');
+      var catInput = document.getElementById('admin-cat');
+      var metricInput = document.getElementById('admin-metric');
+      var descInput = document.getElementById('admin-desc');
+
+      var parsed = parseVideoUrl(urlInput.value);
+      if (!parsed) {
+        alert('Please paste a valid YouTube link, YouTube Shorts link, or Instagram Reel link.');
+        return;
+      }
+
+      var newEntry = {
+        id: parsed.id,
+        platform: parsed.platform,
+        cat: catInput.value,
+        featured: currentRoute === 'featured',
+        metric: metricInput.value.trim() || (parsed.platform === 'ig' ? 'Instagram Reel' : 'Featured Cut'),
+        title: parsed.platform === 'ig' ? 'New Instagram Reel' : 'Loading title...',
+        desc: descInput.value.trim() || 'Lead Editor: Pacing, motion graphics, and audio mix.'
+      };
+
+      videos.unshift(newEntry);
+      saveVideosState();
+      renderPortfolio();
+
+      if (parsed.platform === 'yt') {
+        fetch('https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' + parsed.id + '&format=json')
+          .then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d && d.title) {
+              newEntry.title = d.title.replace(/—/g, '-');
+              saveVideosState();
+              renderPortfolio();
+            }
+          })
+          .catch(function() {});
+      }
+
+      urlInput.value = '';
+      metricInput.value = '';
+      descInput.value = '';
+    }
+
+    function toggleFeatured(index) {
+      videos[index].featured = !videos[index].featured;
+      saveVideosState();
+      renderPortfolio();
+    }
+
+    function removeVideo(index) {
+      if (!confirm('Remove "' + videos[index].title + '" from your portfolio?')) return;
+      videos.splice(index, 1);
+      saveVideosState();
+      renderPortfolio();
+    }
+
+    function moveVideo(index, direction) {
+      var target = index + direction;
+      if (target < 0 || target >= videos.length) return;
+      var temp = videos[index];
+      videos[index] = videos[target];
+      videos[target] = temp;
+      saveVideosState();
+      renderPortfolio();
+    }
+
+    function resetToDefaultVideos() {
+      if (!confirm('Restore default curated video list?')) return;
+      videos = defaultVideos.slice();
+      saveVideosState();
+      renderPortfolio();
+    }
+
+    function copyCurrentCategoryUrl(btn) {
+      var shareUrl = window.location.origin + window.location.pathname + '#' + currentRoute;
+      navigator.clipboard.writeText(shareUrl);
+      var old = btn.textContent;
+      btn.textContent = 'Copied: #' + currentRoute;
+      setTimeout(function() { btn.textContent = old; }, 2000);
+    }
+
+    function promptAdminLogin() {
+      if (document.body.classList.contains('is-admin')) {
+        logoutAdmin();
+        return;
+      }
+      var pass = prompt('Enter Admin Password:');
+      if (pass === ADMIN_PASS) {
+        document.body.classList.add('is-admin');
+        var savedToken = localStorage.getItem('bruk_gh_token');
+        if (savedToken) document.getElementById('gh-token').value = savedToken;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (pass !== null) {
+        alert('Incorrect password.');
+      }
+    }
+
+    function logoutAdmin() {
+      document.body.classList.remove('is-admin');
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        promptAdminLogin();
+      }
+    });
+
+    function buildUpdatedIndexHTML() {
+      var clone = document.documentElement.cloneNode(true);
+      var bodyClone = clone.querySelector('body');
+      bodyClone.classList.remove('is-admin');
+      var gridClone = clone.querySelector('#portfolio-grid');
+      if (gridClone) gridClone.innerHTML = '';
+
+      var fullHTML = '<!DOCTYPE html>\n' + clone.outerHTML;
+      var replacementBlock = '/*__VIDEO_DATA_START__*/\n    var defaultVideos = ' + JSON.stringify(videos, null, 2) + ';\n    /*__VIDEO_DATA_END__*/';
+      return fullHTML.replace(/\/\*__VIDEO_DATA_START__\*\/[\s\S]*?\/\*__VIDEO_DATA_END__\*\//, replacementBlock);
+    }
+
+    function copyFullUpdatedHTML(btn) {
+      navigator.clipboard.writeText(buildUpdatedIndexHTML());
+      var oldText = btn.textContent;
+      btn.textContent = 'Copied Updated index.html';
+      setTimeout(function() { btn.textContent = oldText; }, 2200);
+    }
+
+    function publishToGitHub(btn) {
+      var token = document.getElementById('gh-token').value.trim();
+      if (!token) {
+        alert('Paste your GitHub Personal Access Token first, or click Copy Updated index.html.');
+        return;
+      }
+      localStorage.setItem('bruk_gh_token', token);
+      var oldText = btn.textContent;
+      btn.textContent = 'Publishing...';
+
+      var apiUrl = 'https://api.github.com/repos/kingobruk/bruk-portfolio/contents/index.html';
+      fetch(apiUrl, {
+        headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github.v3+json' }
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(fileData) {
+        var updatedContent = buildUpdatedIndexHTML();
+        var base64Content = btoa(unescape(encodeURIComponent(updatedContent)));
+        return fetch(apiUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: 'Update portfolio via Admin Manager',
+            content: base64Content,
+            sha: fileData.sha
+          })
+        });
+      })
+      .then(function(putRes) {
+        if (putRes.ok) {
+          btn.textContent = 'Published Live';
+          setTimeout(function() { btn.textContent = oldText; }, 3000);
+        } else {
+          throw new Error('GitHub API error');
+        }
+      })
+      .catch(function() {
+        btn.textContent = oldText;
+        alert('Could not auto-publish. Check your GitHub Token permissions or use Copy Updated index.html.');
       });
     }
+
+    function copyEmail(btn) {
+      navigator.clipboard.writeText('king.bruk.nega@gmail.com');
+      var old = btn.textContent;
+      btn.textContent = 'Copied: king.bruk.nega@gmail.com';
+      setTimeout(function() { btn.textContent = old; }, 2000);
+    }
+
+    // INITIALIZE ROUTE
+    handleRoute();
   </script>
 </body>
 </html>
